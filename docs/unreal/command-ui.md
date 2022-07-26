@@ -18,6 +18,8 @@ Commands 初始化步骤为:
 
 - 实例化 `FUICommandList` 并为 `FUICommandInfo` 绑定 `ExecuteAction`
 
+在完成 `FUICommandList` 初始化后，可通过 `UToolMenus` 将 Command 添加到 Unreal Editor 的工具栏中
+
 ## 创建 Commands
 
 创建并初始化 Commands 对象，可包含多个 Command
