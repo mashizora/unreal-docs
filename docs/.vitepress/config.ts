@@ -35,7 +35,10 @@ function sidebarUnreal() {
     {
       text: "Introduction",
       collapsible: true,
-      items: [{ text: "Slate UI", link: "/unreal/slate-ui" }],
+      items: [
+        { text: "Slate UI", link: "/unreal/slate-ui" },
+        { text: "Commands", link: "/unreal/command-ui" },
+      ],
     },
   ];
 }
