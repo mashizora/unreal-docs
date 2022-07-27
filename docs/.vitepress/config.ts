@@ -1,6 +1,10 @@
 import { defineConfig } from "vitepress";
 import { version } from "../../package.json";
-import mermaid from "markdown-it-mermaid";
+
+import fs from "fs";
+import path from "path";
+
+const unrealdir = fs.readdirSync("docs/unreal");
 
 export default defineConfig({
   lang: "en-US",
@@ -33,12 +37,12 @@ export default defineConfig({
 function sidebarUnreal() {
   return [
     {
-      text: "Introduction",
+      text: "Unreal",
       collapsible: true,
-      items: [
-        { text: "Slate UI", link: "/unreal/slate-ui" },
-        { text: "Commands", link: "/unreal/command-ui" },
-      ],
+      items: unrealdir.map((filename) => ({
+        text: filename.substring(0, filename.length - 3),
+        link: path.join("unreal", filename),
+      })),
     },
   ];
 }

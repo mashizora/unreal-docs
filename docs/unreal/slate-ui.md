@@ -51,28 +51,6 @@ for (auto object : Objects) {
 };
 ```
 
-## TODO: 注册菜单栏按钮 | Register Entry to Tool Menus
-
-```cpp
-// Delays menu registration until safe and ready
-UToolMenus::RegisterStartupCallback(FSimpleMulticastDelegate::FDelegate::CreateLambda([&] {
-    FToolMenuOwnerScoped OwnerScoped(this);
-
-    {
-        UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Window");
-        FToolMenuSection& Section = Menu->FindOrAddSection("WindowLayout");
-        Section.AddMenuEntryWithCommandList(FtoolbarCommands::Get().PluginAction, PluginCommands);
-    }
-
-    {
-        UToolMenu* ToolbarMenu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
-        FToolMenuSection& Section = ToolbarMenu->FindOrAddSection("PluginTools");
-        FToolMenuEntry& Entry = Section.AddEntry(FToolMenuEntry::InitToolBarButton(FtoolbarCommands::Get().PluginAction));
-        Entry.SetCommandList(PluginCommands);
-    }
-}));
-```
-
 ## Slate 基类 | Slate Base Class
 
 `SLeafWidget` : 无 `Slot()` 成员，不包含子 `Widget`

@@ -66,7 +66,7 @@ void FMyCommands::RegisterCommands()
 ```cpp
 // Inherit from TCommands<>, RegisterCommands() will be called
 FMyCommands::Register();
-PluginCommands = MakeShareable(new FUICommandList);
+PluginCommands = MakeShared<FUICommandList>();
 PluginCommands->MapAction(
     FMyCommands::Get().PluginAction,  // CommandId: TSharedPtr<FUICommandInfo>
     FExecuteAction(),                 // ExecuteAction: Delegate -> bool
