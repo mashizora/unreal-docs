@@ -1,10 +1,10 @@
 import { defineConfig } from "vitepress";
-import { version } from "../../package.json";
+import { version } from "../package.json";
 
 import fs from "fs";
 import path from "path";
 
-const unrealdir = fs.readdirSync("docs/unreal");
+const unrealdir = fs.readdirSync("unreal");
 
 export default defineConfig({
   lang: "en-US",
