@@ -80,7 +80,7 @@ TSharedRef<SWidget> MenuWidget = MenuBuilder.MakeWidget();
         "Plugin",                                            // Name
         LOCTEXT("PluginName", "Plugin"),                     // Display Name
         LOCTEXT("PluginDescription", "Plugin Description"),  // Descriptions
-        FNewToolMenuChoice()                                 // Contents: empty
+        FNewToolMenuChoice()                                 // Contents: default
     );
     Entry.InsertPosition = FToolMenuInsert("Help", EToolMenuInsertType::Before);
 }
@@ -124,8 +124,8 @@ TSharedRef<SWidget> MenuWidget = MenuBuilder.MakeWidget();
     FToolMenuSection& Section = ToolbarMenu->FindOrAddSection(NAME_None);
     Section.AddEntry(FToolMenuEntry::InitComboButton(
         "Plugin",              // Name
-        FUIAction(),           // Action: empty
-        FNewToolMenuChoice()   // Contents: empty
+        FUIAction(),           // Action: default
+        FNewToolMenuChoice()   // Contents: default
     ));
 }
 {
