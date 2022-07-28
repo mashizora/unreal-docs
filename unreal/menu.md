@@ -16,7 +16,7 @@ Unreal 还提供了 `FMenuBuilder` `FExtender` 等可用来拓展菜单的 API�
 
 ## 拓展菜单 | Extend Menus
 
-`UToolMenus` 是一个全局对象，Unreal Editor 的所有内置菜单均由其管理，我们在插件中使用 `UToolMenus` 注册自定义菜单时，需要确保 `UToolMenu` 及其相关系统已就绪。可以通过将自定义的菜单拓展函数传入 `UToolMenus::RegisterStartupCallback()` ，来确保自定义菜单注册时 `UToolMenu` 系统已准备就绪
+`UToolMenus` 是一个全局对象，Unreal Editor 的所有内置菜单均由其管理，我们在插件中使用 `UToolMenus` 注册自定义菜单时，需要确保 `UToolMenus` 及其相关系统已就绪。可以将拓展菜单的函数传入 `UToolMenus::RegisterStartupCallback()` ，来确保自定义菜单注册时 `UToolMenus` 系统已准备就绪
 
 ```cpp
 // Delays menu registration until safe and ready
@@ -30,21 +30,25 @@ UToolMenus::RegisterStartupCallback(
 
 ## 构造控件 | Construct Widget
 
-在将菜单作为参数传入一些控件的构造函数，或需要使用菜单作为控件等场景下，我们需要获取菜单对象对应的 `SWidget` 。
+在一些使用场景下，我们需要获取菜单对象对应的 `SWidget` ，例如：
 
-如果菜单已经在 `UToolMenus` 中完成注册，那么可以使用 `UToolMenus` 中提供的方法直接获取
+- 将菜单作为参数传入一些控件的构造函数
+- 使用菜单作为控件进行 UI 设计
 
-```cpp
-TSharedRef<SWidget> MenuWidget = UToolMenus::Get()->GenerateWidget(Menu);
-```
+本文提供两种方法实现获取一个菜单对应的 `SWidget`
 
-如所需菜单不是一个全局菜单，也不想将其注册到 `UToolMenus` ，则可使用 `FMenuBuilder` 构建本地菜单，获取其 `SWidget` 对象供其他控件使用
+1. 如果菜单已经在 `UToolMenus` 中完成注册，那么可以使用 `UToolMenus` 提供的方法直接获取
 
-```cpp
-FMenuBuilder MenuBuilder(true, PluginCommands);
-MenuBuilder.AddMenuEntry(FMyCommands::Get().PluginAction);
-TSharedRef<SWidget> MenuWidget = MenuBuilder.MakeWidget();
-```
+   ```cpp
+   TSharedRef<SWidget> MenuWidget = UToolMenus::Get()->GenerateWidget(Menu);
+   ```
+
+2. 如菜单未注册到 `UToolMenus` ，也不想将其注册为全局菜单，可使用 `FMenuBuilder` 构建本地菜单，然后获取其 `SWidget` 对象供其他控件使用
+   ```cpp
+   FMenuBuilder MenuBuilder(true, PluginCommands);
+   MenuBuilder.AddMenuEntry(FMyCommands::Get().PluginAction);
+   TSharedRef<SWidget> MenuWidget = MenuBuilder.MakeWidget();
+   ```
 
 ## 拓展主菜单栏 | Extend Main Menu
 
@@ -157,10 +161,12 @@ TSharedRef<SWidget> MenuWidget = MenuBuilder.MakeWidget();
 
 ## 拓展任何菜单 | Extend ANY Menu
 
-已经提到过，Unreal Editor 中的所有菜单均由 `UToolMenus` 对象维护，理论上可以使用这种方法拓展任何一个编辑器内的菜单。
+不难发现，通过 `UToolMenus` 进行 Unreal Editor 菜单拓展在用法上具有很高的一致性。前文也提到过，Unreal Editor 中的所有菜单均由 `UToolMenus` 对象维护，理论上可以使用这种方法拓展编辑器内的任何菜单。
+
+此外，Unreal Editor 还提供了相应的开发者工具，便于我们快速查找编辑器 UI 中注入点的名称。
 
 在 Editor Preference 中打开
 
 `General -> Miscellaneous -> Developer Tools -> Display UI Extension Points`
 
-可以查看所有可被拓展的菜单名称
+即可查看所有可被拓展的菜单名称

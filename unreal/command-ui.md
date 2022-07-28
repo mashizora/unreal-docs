@@ -50,11 +50,11 @@ public:
 void FMyCommands::RegisterCommands()
 {
 	UI_COMMAND(
-        PluginAction,                      // Command: FUICommandInfo
-        "toolbar",                         // Name
-        "Execute toolbar action",          // Description
-        EUserInterfaceActionType::Button,  // Command Type
-        FInputChord()                      // Input Chord: default
+        PluginAction,                       // Command: FUICommandInfo
+        "toolbar",                          // Name
+        "Execute toolbar action",           // Description
+        EUserInterfaceActionType::Button,   // Command Type
+        FInputChord()                       // Input Chord: default
     );
 }
 ```
@@ -75,12 +75,8 @@ void FMyCommands::RegisterCommands()
 FMyCommands::Register();    // RegisterCommands() will be called in Register()
 PluginCommands = MakeShared<FUICommandList>();
 PluginCommands->MapAction(
-    FMyCommands::Get().PluginAction,      // Command: FUICommandInfo
-    FExecuteAction::CreateLambda([] {     // Action
-        // Do Something ...
-    }),
-    FCanExecuteAction::CreateLambda([] {  // Is Action Valid: default is true
-        return true;
-    }),
+    FMyCommands::Get().PluginAction,   // Command: FUICommandInfo
+    FExecuteAction(),                  // Delegate: () -> void
+    FCanExecuteAction()                // Delegate: () -> bool
 );
 ```
