@@ -4,12 +4,12 @@ import { version } from "../package.json";
 import fs from "fs";
 import path from "path";
 
-const unrealdir = fs.readdirSync("unreal");
+const unrealDir = fs.readdirSync("unreal");
 
 export default defineConfig({
   lang: "en-US",
-  title: "mashisora",
-  description: "mashisora's blog",
+  title: "unreal editor dev",
+  description: "unreal editor dev",
 
   lastUpdated: true,
 
@@ -19,17 +19,15 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: "https://github.com/vuejs/vitepress/edit/main/docs/:path",
+      pattern: "https://github.com/mashisora/docs/edit/main/:path",
       text: "Edit this page on GitHub",
     },
 
-    socialLinks: [
-      { icon: "github", link: "https://github.com/vuejs/vitepress" },
-    ],
+    socialLinks: [{ icon: "github", link: "https://github.com/mashisora" }],
 
     footer: {
       message: "Released under the MIT License.",
-      copyright: "Copyright © 2019-present Evan You",
+      copyright: `Copyright © ${new Date().getFullYear()} mashisora`,
     },
   },
 });
@@ -39,7 +37,7 @@ function sidebarUnreal() {
     {
       text: "Unreal",
       collapsible: true,
-      items: unrealdir.map((filename) => ({
+      items: unrealDir.map((filename) => ({
         text: filename.substring(0, filename.length - 3),
         link: path.join("unreal", filename),
       })),
