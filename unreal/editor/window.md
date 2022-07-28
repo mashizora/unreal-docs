@@ -37,8 +37,8 @@ FGlobalTabmanager::Get()->RegisterNomadTabSpawner(
 
 二者的注册行为基本相同，主要差异体现在：
 
-- `TabSpawner` 使用原生指针，重复注册同一 TabId 时会抛出异常
-- `NomadTabSpawner` 使用智能指针，重复注册同一 TabId 时会注销旧实例
+- `TabSpawner` 使用原生指针，重复注册同一 TabId 时会抛出异常并直接返回
+- `NomadTabSpawner` 使用智能指针，重复注册同一 TabId 时会自动注销旧实例并创建新实例
 
 更多细节可参考：`Runtime\Slate\Private\Framework\Docking\TabManager.cpp`
 
