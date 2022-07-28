@@ -23,7 +23,9 @@ export default defineConfig({
       text: "Edit this page on GitHub",
     },
 
-    socialLinks: [{ icon: "github", link: "https://github.com/mashisora" }],
+    socialLinks: [
+      { icon: "github", link: "https://github.com/mashisora/docs" },
+    ],
 
     footer: {
       message: "Released under the MIT License.",
