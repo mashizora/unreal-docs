@@ -4,8 +4,6 @@ import { version } from "../package.json";
 import fs from "fs";
 import path from "path";
 
-const unrealDir = fs.readdirSync("unreal");
-
 export default defineConfig({
   lang: "en-US",
   title: "unreal editor dev",
@@ -35,14 +33,16 @@ export default defineConfig({
 });
 
 function sidebarUnreal() {
-  return [
-    {
-      text: "Unreal",
+  const unreal = fs.readdirSync("unreal");
+  return unreal.map((category) => {
+    const files = fs.readdirSync(path.join("unreal", category));
+    return {
+      text: category,
       collapsible: true,
-      items: unrealDir.map((filename) => ({
-        text: filename.substring(0, filename.length - 3),
-        link: path.join("unreal", filename),
+      items: files.map((file) => ({
+        text: file.substring(0, file.length - 3),
+        link: path.join("unreal", category, file),
       })),
-    },
-  ];
+    };
+  });
 }
