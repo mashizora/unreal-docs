@@ -1,5 +1,7 @@
 # Unreal Editor Menus
 
+## 认识菜单 | Menus
+
 Unreal Editor 的菜单结构为：
 
 `UToolMenus -> UToolMenu -> FToolMenuSection -> FToolMenuEntry`
@@ -14,7 +16,7 @@ Unreal 还提供了 `FMenuBuilder` `FExtender` 等可用来拓展菜单的 API�
 
 考虑到代码的简洁性、一致性和可维护性，本文优先使用 `UToolMenu` 相关 API 。
 
-## 拓展菜单 | Extend Menus
+## 如何拓展菜单 | Extend
 
 `UToolMenus` 是一个全局对象，Unreal Editor 的所有内置菜单均由其管理，我们在插件中使用 `UToolMenus` 注册自定义菜单时，需要确保 `UToolMenus` 及其相关系统已就绪。可以将拓展菜单的函数传入 `UToolMenus::RegisterStartupCallback()` ，来确保自定义菜单注册时 `UToolMenus` 系统已准备就绪
 
@@ -28,7 +30,7 @@ UToolMenus::RegisterStartupCallback(
 }));
 ```
 
-## 构造控件 | Construct Widget
+## 构造控件 | Widget
 
 在一些使用场景下，我们需要获取菜单对象对应的 `SWidget` ，例如：
 
@@ -50,7 +52,7 @@ UToolMenus::RegisterStartupCallback(
    TSharedRef<SWidget> MenuWidget = MenuBuilder.MakeWidget();
    ```
 
-## 拓展主菜单栏 | Extend Main Menu
+## 拓展主菜单栏 | Main Menu
 
 ### 拓展内置菜单
 
@@ -59,14 +61,12 @@ UToolMenus::RegisterStartupCallback(
 - 拓展内置菜单 `LevelEditor.MainMenu.Window`
 
 ```cpp
-{
-    UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Window");
-    FToolMenuSection& Section = Menu->FindOrAddSection("WindowLayout");
-    FToolMenuEntry& Entry = Section.AddEntry(
-        FToolMenuEntry::InitMenuEntry(FMyCommands::Get().PluginAction)
-    );
-    Entry.SetCommandList(PluginCommands);
-}
+UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Window");
+FToolMenuSection& Section = Menu->FindOrAddSection("WindowLayout");
+FToolMenuEntry& Entry = Section.AddEntry(
+    FToolMenuEntry::InitMenuEntry(FMyCommands::Get().PluginAction)
+);
+Entry.SetCommandList(PluginCommands);
 ```
 
 ### 添加菜单
@@ -74,31 +74,31 @@ UToolMenus::RegisterStartupCallback(
 拓展 Unreal Editor 主界面顶部的主菜单栏，可以指定插入位置。
 
 - 拓展 `LevelEditor.MainMenu` 添加菜单栏按钮
+
+```cpp
+UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu");
+FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
+FToolMenuEntry& Entry = Section.AddSubMenu(
+    "Plugin",                                            // Name
+    LOCTEXT("PluginName", "Plugin"),                     // Display Name
+    LOCTEXT("PluginDescription", "Plugin Description"),  // Descriptions
+    FNewToolMenuChoice()                                 // Contents: default
+);
+Entry.InsertPosition = FToolMenuInsert("Help", EToolMenuInsertType::Before);
+```
+
 - 拓展 `LevelEditor.MainMenu.Plugin` 创建自定义菜单
 
 ```cpp
-{
-    UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu");
-    FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
-    FToolMenuEntry& Entry = Section.AddSubMenu(
-        "Plugin",                                            // Name
-        LOCTEXT("PluginName", "Plugin"),                     // Display Name
-        LOCTEXT("PluginDescription", "Plugin Description"),  // Descriptions
-        FNewToolMenuChoice()                                 // Contents: default
-    );
-    Entry.InsertPosition = FToolMenuInsert("Help", EToolMenuInsertType::Before);
-}
-{
-    UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Plugin");
-    FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
-    Section.AddMenuEntryWithCommandList(
-        FMyCommands::Get().PluginAction,     // Command
-        PluginCommands                       // CommandList
-    );
-}
+UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Plugin");
+FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
+Section.AddMenuEntryWithCommandList(
+    FMyCommands::Get().PluginAction,     // Command
+    PluginCommands                       // CommandList
+);
 ```
 
-## 拓展工具栏 | Extend Toolbar
+## 拓展工具栏 | Toolbar Menu
 
 拓展 Unreal Editor 主界面的工具栏。在 Unreal Editor 的工具栏中，使用 `ToolBarButton` 实现按钮，使用 `ComboButton` 实现带有菜单的按钮
 
@@ -107,59 +107,58 @@ UToolMenus::RegisterStartupCallback(
 - 拓展 `LevelEditor.LevelEditorToolBar.PlayToolBar` 添加工具栏按钮
 
 ```cpp
-{
-    UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
-    FToolMenuSection& Section = ToolbarMenu->FindOrAddSection(NAME_None);
-    FToolMenuEntry& Entry = Section.AddEntry(
-        FToolMenuEntry::InitToolBarButton(FMyCommands::Get().PluginAction)
-    );
-    Entry.SetCommandList(PluginCommands);
-}
+UToolMenu* Menu = UToolMenus::Get()
+    ->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
+FToolMenuSection& Section = ToolbarMenu->FindOrAddSection(NAME_None);
+FToolMenuEntry& Entry = Section.AddEntry(
+    FToolMenuEntry::InitToolBarButton(FMyCommands::Get().PluginAction)
+);
+Entry.SetCommandList(PluginCommands);
 ```
 
 ### 添加菜单按钮
 
 - 拓展 `LevelEditor.LevelEditorToolBar.PlayToolBar` 添加工具栏菜单按钮
+
+```cpp
+UToolMenu* Menu = UToolMenus::Get()
+    ->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
+FToolMenuSection& Section = ToolbarMenu->FindOrAddSection(NAME_None);
+Section.AddEntry(FToolMenuEntry::InitComboButton(
+    "Plugin",              // Name
+    FUIAction(),           // Action: default
+    FNewToolMenuChoice()   // Contents: default
+));
+```
+
 - 拓展 `LevelEditor.LevelEditorToolBar.PlayToolBar.Plugin` 创建自定义菜单
 
 ```cpp
-{
-    UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
-    FToolMenuSection& Section = ToolbarMenu->FindOrAddSection(NAME_None);
-    Section.AddEntry(FToolMenuEntry::InitComboButton(
-        "Plugin",              // Name
-        FUIAction(),           // Action: default
-        FNewToolMenuChoice()   // Contents: default
-    ));
-}
-{
-    UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar.Plugin");
-    FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
-    Section.AddMenuEntryWithCommandList(
-        FMyCommands::Get().PluginAction,     // Command
-        PluginCommands                       // CommandList
-    );
-}
+UToolMenu* Menu = UToolMenus::Get()
+    ->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar.Plugin");
+FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
+Section.AddMenuEntryWithCommandList(
+    FMyCommands::Get().PluginAction,     // Command
+    PluginCommands                       // CommandList
+);
 ```
 
-## 拓展右键菜单 | Extend Context Menu
+## 拓展右键菜单 | Context Menu
 
 以资源管理器的右键菜单为例，演示如何拓展右键菜单
 
 - 拓展内置菜单 `ContentBrowser.AssetContextMenu`
 
 ```cpp
-{
-    UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("ContentBrowser.AssetContextMenu");
-    FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
-    FToolMenuEntry& Entry = Section.AddEntry(
-        FToolMenuEntry::InitMenuEntry(FMyCommands::Get().PluginAction)
-    );
-    Entry.SetCommandList(PluginCommands);
-}
+UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("ContentBrowser.AssetContextMenu");
+FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
+FToolMenuEntry& Entry = Section.AddEntry(
+    FToolMenuEntry::InitMenuEntry(FMyCommands::Get().PluginAction)
+);
+Entry.SetCommandList(PluginCommands);
 ```
 
-## 拓展任何菜单 | Extend ANY Menu
+## 拓展其他菜单 | Other Menus
 
 不难发现，通过 `UToolMenus` 进行 Unreal Editor 菜单拓展在用法上具有很高的一致性。前文也提到过，Unreal Editor 中的所有菜单均由 `UToolMenus` 对象维护，理论上可以使用这种方法拓展编辑器内的任何菜单。
 

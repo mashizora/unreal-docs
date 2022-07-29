@@ -1,5 +1,7 @@
 # Unreal Tab (Window)
 
+## 认识窗口 | Tabs
+
 > 在 Unreal Editor 的 UI 框架下，Tab 的语义近似等同于一般桌面应用中的 Window，与浏览器的选项卡有着类似的行为。本文为了阐述方便，默认使用 “窗口” 一词作为 Tab 的翻译，在需要区分二者时使用英语。请不要将此 “窗口” 与一般应用中的窗口混淆。
 >
 > 实际上，Unreal Editor 中的所有的窗口（Window）都是以 Tab 或 Tab 组合的形式呈现的。
@@ -10,7 +12,7 @@
 - 良好的多 Tab 窗口支持
 - Tab 行为的一致化，便于管理和操作
 
-## 注册窗口 | Register Tab
+## 注册窗口 | Register
 
 `FTabManager` 拥有两个记录 Tab 信息的成员：
 
@@ -44,7 +46,7 @@ FGlobalTabmanager::Get()->RegisterNomadTabSpawner(
 
 对于一般插件开发，我们往往需要构建一个独立的窗口。此时可优先考虑将插件的 Tab 注册到 `FGlobalTabmanager` 的 `NomadTabSpawner` 中。实际上，Unreal 提供的官方插件工程模板也是这样做的。
 
-## 窗口属性 | Tab Property
+## 窗口属性 | Property
 
 在完成窗口的注册后，注册函数会返回一个 `FTabSpawnerEntry&` ，我们可以通过此 Entry 设置窗口的属性。例如：
 
@@ -64,7 +66,7 @@ FGlobalTabmanager::Get()->RegisterNomadTabSpawner(...)
 
 全部可配置属性参考：`Runtime\Slate\Private\Framework\Docking\TabManager.h`
 
-## 唤起窗口 | Invoke Tab
+## 唤起窗口 | Invoke
 
 我们可以使用如下方法来唤起一个已在 `FGlobalTabmanager` 中注册的全局 Tab ：
 
@@ -76,12 +78,12 @@ FGlobalTabmanager::Get()->TryInvokeTab(FName("OutputLog"));
 
 - 若 Tab 已实例化：
   - Window 处于打开状态时：聚焦 Window
-  - Window 处于关闭状态时：聚焦 Window
+  - Window 处于关闭状态时：恢复 Window
 - 若 Tab 未实例化：
   - 有已实例化的同类 Tab 时：在同类 Tab 的 Window 中打开
   - 无已实例化的同类 Tab 时：新建 Window 并打开
 
-## 注销窗口 | Unregister Tab
+## 注销窗口 | Unregister
 
 注销窗口时，使用与注册相应的 API 即可：
 

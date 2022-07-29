@@ -8,7 +8,7 @@ hero:
   actions:
     - theme: brand
       text: Unreal Engine
-      link: /unreal/auto/start
+      link: /unreal/start/about
     - theme: alt
       text: View on GitHub
       link: https://github.com/mashisora/docs
