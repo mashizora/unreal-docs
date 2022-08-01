@@ -14,6 +14,7 @@ Unreal Editor Plugin 使用 C++ 和 Unreal 核心库开发，理论上我们也�
 
 - 轻量高效：Slate UI 仅依赖 Unreal 核心库，无外部依赖。例如生命周期管理由 Unreal 智能指针实现，事件监听由 Unreal Delegate 机制实现等。如引入 QT 等第三方 GUI 库，随之也会引入其相关核心库和工具函数库，与 Unreal 核心库存在大量功能重合，造成代码冗余。
 - 与 Unreal Editor 保持一致性：我们的插件是在 Unreal Editor 中运行的，使用 Slate UI 构建 GUI，可以与编辑器保持在视觉风格和行为上的一致性，便于用户理解和操作。
+- 语法的简洁性：Unreal Engine 通过使用大量宏定义、运算符重载、参数传递等手段，实现了在 C++ 中使用声明式语法和组合式表达式的方式来描述 UI，我们将在后面的章节中讨论这些特殊语法。
 - UMG 也基于 Slate ：Unreal Engine 的游戏内 UI 系统 UMG 本质上是对 Slate UI 的二次封装。所以学习 Slate UI 也能加深我们对于 Unreal 游戏内 UI 系统的理解。
 
 以上只是一些个人见解，实际开发前的技术选型需要具体问题具体分析。QT 本身也是设计非常优秀的 C++ GUI 方案，嵌入 CEF 等框架也能大大加快 UI 迭代速度，但既然都打算深入学习 Unreal Editor 了，了解一下编辑器使用的 UI 框架也没什么坏处。

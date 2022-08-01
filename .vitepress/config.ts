@@ -32,7 +32,7 @@ export default defineConfig({
           ],
         },
         {
-          text: '拓展 Editor UI',
+          text: '拓展 Editor',
           collapsible: true,
           items: [
             { text: '自定义 Commands', link: '/unreal/extend/commands' },

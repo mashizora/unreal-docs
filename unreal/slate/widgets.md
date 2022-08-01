@@ -2,7 +2,7 @@
 
 ## Slate 控件
 
-有 GUI 开发经验的读者应该都能理解控件的概念，在这里不过多赘述。
+Slate UI 系统的基本单位是控件，有 GUI 开发经验的读者应该都能理解控件的概念，在这里不过多赘述。
 
 在 Unreal 中，所有 Slate 控件的基类是 `SWidget`，所有 Slate 控件的派生类均按照 `S + 控件名` 的规则命名。
 
@@ -34,10 +34,14 @@ Slate 提供了一组用于实例化控件的宏，它们分别是：
 
 `SDockTab` 控件描述了一个 Tab 的标签信息和内容，是构建 Unreal 内独立窗口应用的入口。
 
-Unreal Editor 的开发工具中提供了一个名为 STARSHIP GALLERY 的 Widget Gallery，可以帮助我们学习和开发 Slate Widget。
+## 开发工具
 
-该工具位于 Tools -> Debug -> Debug Tools -> Test Suite
+Unreal Editor 的开发工具中提供了两款可以辅助我们学习和开发 Unreal 编辑器的工具：
 
-对应源码位于 `Runtime\AppFramework\Private\Framework\Testing\SStarshipGallery.cpp`
+- STARSHIP GALLERY：该工具位于 `Tools -> Debug -> Debug Tools -> Test Suite`  
+  该工具展示了大部分常用的 Slate 控件和对应名称。
 
-STARSHIP GALLERY 中列举了大部分常用的基本控件供我们选择，除此之外，Slate 也提供了一些易用的组合控件
+- Widget Reflector：该工具位于 `Tools -> Debug -> Widget Reflector`  
+  该工具可以从编辑器中拾取 Widget，并展示出其树形结构。
+
+对于不嫌麻烦的读者来说，拿着这两个开发工具，结合阅读 Unreal Editor 源码，已经可以编写绝大部分 UI 了。
