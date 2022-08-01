@@ -44,7 +44,10 @@ export default defineConfig({
           text: 'Slate UI',
           collapsible: true,
           items: [
-            { text: 'Slate UI', link: '/unreal/slate/slate-ui' },
+            { text: '简介', link: '/unreal/slate/into' },
+            { text: '布局', link: '/unreal/slate/layout' },
+            { text: '基础控件', link: '/unreal/slate/basic-widgets' },
+            { text: '定义控件', link: '/unreal/slate/define-widgets' },
             { text: '杂项', link: '/unreal/slate/misc' },
             { text: '编写中', link: '/unreal/slate/writing' },
           ],
