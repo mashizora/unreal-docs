@@ -8,7 +8,7 @@ Commands 是 Unreal Editor 中的一个重要概念，可以将其理解为对�
 - `TCommands<>` 用于保存一组 `FUICommandInfo`，完成 Command 的注册和生命周期维护
 - `FUICommandList` 用于记录 Command 和 Action 的绑定关系
 
-初看有些复杂，可以将 `TCommands<>` 简单的理解为一个（或几个）Command 的管理器，每一个 Command 的信息保存在一个 `FUICommandInfo` 中，这两者共同完成了 Command 的名称、描述、类型等基本信息的注册，但还不涉及 Command 所触发的动作信息。`FUICommandList` 将以上基本信息与一个 Action 联系起来，进而实现一个有效的 Command 。
+初看有些复杂，可以将 `TCommands<>` 简单的理解为一个（或几个）Command 的管理器，每一个 Command 的信息保存在一个 `FUICommandInfo` 中，这两者共同完成了 Command 的名称、描述、类型、热键等基本信息的注册，但还不涉及 Command 所触发的动作信息。`FUICommandList` 将以上基本信息与一个 Action 联系起来，进而实现一个有效的 Command 。
 
 下面演示如何向 Unreal Editor 添加有效的自定义 Commands 。
 
