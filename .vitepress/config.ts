@@ -47,6 +47,7 @@ export default defineConfig({
             { text: '简介', link: '/unreal/slate/into' },
             { text: '布局', link: '/unreal/slate/layout' },
             { text: 'Slate 控件', link: '/unreal/slate/widgets' },
+            { text: '细节面板', link: '/unreal/slate/details' },
             { text: '定义控件', link: '/unreal/slate/define' },
             { text: '杂项', link: '/unreal/slate/misc' },
             { text: '编写中', link: '/unreal/slate/writing' },
