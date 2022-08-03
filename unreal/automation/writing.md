@@ -75,6 +75,13 @@ auto SelectedActors = GEditor
         ->GetSelectedLevelActors();
 ```
 
+或直接使用 `GEditor` 实现：
+
+```cpp
+TArray<UObject*> Objects;
+GEditor->GetSelectedActors()->GetSelectedObjects(Objects);
+```
+
 ## 资产导入
 
 在 Unreal Editor 中，资产的导入由 Import Subsystem 完成。我们可以使用该系统触发导入操作。

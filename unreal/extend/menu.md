@@ -158,6 +158,8 @@ FToolMenuEntry& Entry = Section.AddEntry(
 Entry.SetCommandList(PluginCommands);
 ```
 
+Actor 右键菜单路径为 `LevelEditor.ActorContextMenu`
+
 ## 拓展其他菜单 | Other Menus
 
 不难发现，通过 `UToolMenus` 进行 Unreal Editor 菜单拓展在用法上具有很高的一致性。前文也提到过，Unreal Editor 中的所有菜单均由 `UToolMenus` 对象维护，理论上可以使用这种方法拓展编辑器内的任何菜单。
