@@ -61,7 +61,7 @@ Details->SetObject(UTestClass::StaticClass()->GetDefaultObject(true), true);
 
 ## 使用细节面板控件
 
-通过上述方法创建的细节面板控件将返回其智能指针。之前的章节中提到过，Slate 组合式表达式中的 `SNew()` 宏本质上是使用智能引用实例化控件，所以要将细节面板嵌入到 Slate 的表达式中，仅需将其转换为智能指针。
+通过上述方法创建的细节面板控件将返回其智能指针。之前的章节中提到过，Slate 组合式表达式中的 `SNew()` 宏本质上是使用智能引用实例化控件，所以要将细节面板嵌入到 Slate 的表达式中，仅需将智能指针转换为智能引用。
 
 ```cpp
 SNew(SVerticalBox)
