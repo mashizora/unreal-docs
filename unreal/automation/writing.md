@@ -27,7 +27,7 @@ GetCurrentContentBrowserPath(FString& OutPath);
 
 ## 关于资产对象的名称和路径
 
-### 获取选中对象
+### 获取当前选中 Assets
 
 `UEditorUtilityLibrary` 提供了两种获取编辑器中当前选中资产对象的 API ，分别为：
 
@@ -63,4 +63,14 @@ ObjectPath.FindLastChar('/', index);
 auto PackagePath = ObjectPath.Left(index);
 auto AssetName = Object->GetName();
 auto AssetClass = Object->GetClass()->GetName();
+```
+
+## 获取当前选中 Actors
+
+Editor Scripting Utilities 插件已在 Unreal 5.0 中标记为 Deprecated。不建议使用该插件中 `UEditorLevelLibrary` 提供的 API，建议使用 Subsystem API。
+
+```cpp
+auto SelectedActors = GEditor
+        ->GetEditorSubsystem<UEditorActorSubsystem>()
+        ->GetSelectedLevelActors();
 ```

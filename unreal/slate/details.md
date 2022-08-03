@@ -16,7 +16,8 @@
 
 ```cpp
 auto SelectedActors = GEditor
-        ->GetEditorSubsystem<UEditorActorSubsystem>()->GetSelectedLevelActors();
+        ->GetEditorSubsystem<UEditorActorSubsystem>()
+        ->GetSelectedLevelActors();
 if (SelectedActors.Num() > 0) {
     TArray<UObject*> SelectedObjects;
     for (const auto Actor : SelectedActors) {
