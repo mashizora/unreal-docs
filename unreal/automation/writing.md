@@ -74,3 +74,39 @@ auto SelectedActors = GEditor
         ->GetEditorSubsystem<UEditorActorSubsystem>()
         ->GetSelectedLevelActors();
 ```
+
+## 资产导入
+
+在 Unreal Editor 中，资产的导入由 Import Subsystem 完成。我们可以使用该系统触发导入操作。
+
+```cpp
+GEditor->GetEditorSubsystem<UImportSubsystem>()->ImportNextTick(Files, Path);
+```
+
+Import Subsystem 同时开放了一组可以干预资产导入过程的代理：
+
+```cpp
+DECLARE_MULTICAST_DELEGATE_FiveParams(FOnAssetPreImport,
+        UFactory*,UClass*, UObject*, const FName&, const TCHAR*);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnAssetPostImport, UFactory*, UObject*);
+DECLARE_MULTICAST_DELEGATE_OneParam(FOnAssetReimport, UObject*);
+DECLARE_MULTICAST_DELEGATE_TwoParams(FOnAssetPostLODImport, UObject*, int32);
+
+FOnAssetPreImport OnAssetPreImport;
+FOnAssetPostImport OnAssetPostImport;
+FOnAssetReimport OnAssetReimport;
+FOnAssetPostLODImport OnAssetPostLODImport;
+```
+
+我们可以通过为以上代理绑定自定义函数的方式干预资产导入过程。
+
+```cpp
+GEditor->GetEditorSubsystem<UImportSubsystem>()
+       ->OnAssetReimport.AddLambda([](UObject* Object) {...});
+```
+
+也可以广播以上代理调用导入模块。
+
+```cpp
+GEditor->GetEditorSubsystem<UImportSubsystem>()->BroadcastAssetReimport(Object);
+```
