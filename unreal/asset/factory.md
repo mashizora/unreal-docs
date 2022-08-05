@@ -1,8 +1,18 @@
-# 创建 Factory
+# 资产类型 Factory
 
-在创建完自定义类后，Unreal 还不知道要以何种方式在编辑器中实例化该类。此处需要创建并绑定一个 Factory 类，在其中实现编辑器中的构造方法和行为等。
+## 关于 Factory
 
-一般来说，至少需要指派以下属性，并实现 `FactoryCreateNew()` 方法：
+在 Unreal Editor 的资产管理器中右键或点击工具栏的 Add 按钮，选择资产类型，Unreal Editor 会在当前目录创建一个该资产类型的实例。这一实例化过程是由 `UFactory` 的派生类完成的。
+
+`UFactory` 主要用于定义资产在 Unreal Editor 中的实例化方法和实例化后的行为。
+
+本文将用于构造特定资产类型的 `UFactory` 派生类称作 Factory 。
+
+## 声明 Factory
+
+我们自定义的资产类型还没有相应的 Factory 为其实现 Unreal Editor 中的实例化方法，所以暂时不能被 Unreal Editor 识别为资产类型。我们需要为自定义资产类型声明一个 Factory 。
+
+以下代码为自定义的资产类型声明一个 Factory ，该 Factory 至少需要指派以下 3 个属性，并重写 `FactoryCreateNew()` 方法：
 
 ```cpp
 UCLASS()
@@ -25,6 +35,12 @@ public:
     ) override;
 };
 ```
+
+## 实现 FactoryCreateNew()
+
+实现该 Factory 的 `FactoryCreateNew()` 方法。该方法即为自定义资产类型在 Unreal Editor 中的实例化方法。
+
+下面给出一种使用 `NewObject<>()` 实例化资产类型的最小实现：
 
 ```cpp
 UObject* UCustomAssetFactory::FactoryCreateNew(

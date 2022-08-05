@@ -1,4 +1,6 @@
-# AssetTypeActions
+# 资产类型 Actions
+
+## 关于 Actions
 
 ## 创建 AssetTypeActions
 
