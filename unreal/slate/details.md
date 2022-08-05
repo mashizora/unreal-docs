@@ -24,7 +24,7 @@ if (SelectedActors.Num() > 0) {
         auto Object = Cast<UObject>(Actor);
         SelectedObjects.Add(Object);
     }
-    ConfigPanel->SetObjects(SelectedObjects, true);
+    Details->SetObjects(SelectedObjects, true);
 }
 ```
 
