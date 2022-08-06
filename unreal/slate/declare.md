@@ -1,4 +1,27 @@
-# 定义控件
+# 声明 Slate 控件
+
+## 声明式语法
+
+Slate UI 框架提供了一组基于声明式语法的宏用于简化 Slate 控件的声明。
+
+下面是一个 Slate 控件的声明式：
+
+```cpp
+SLATE_BEGIN_ARGS(SMyCompoundWidget)
+    : _Attribute(false)
+    {}
+    SLATE_NAMED_SLOT(FArguments, FSimpleSlot, Content)
+    SLATE_ATTRIBUTE(bool, Attribute)
+    SLATE_EVENT(FOnClicked, OnClicked)
+SLATE_END_ARGS()
+```
+
+其中：
+
+- `SLATE_BEGIN_ARGS() {}` 用于声明 Slate 控件和 Attribute 初值，语法类似构造函数，每个 Attribute 对应的实际变量名前带有 `_` 前缀
+- `SLATE_NAMED_SLOT()` 用于声明 Slot
+- `SLATE_ATTRIBUTE()` 用于声明 Attribute ，传入 Attribute 类型和 Attribute 名
+- `SLATE_EVENT()` 用于声明 Event ，传入 Delegate 和 Event 名
 
 ## 为什么要定义控件
 

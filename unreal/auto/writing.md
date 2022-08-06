@@ -108,8 +108,7 @@ FOnAssetPostLODImport OnAssetPostLODImport;
 我们可以通过为以上代理绑定自定义函数的方式干预资产导入过程。
 
 ```cpp
-GEditor->GetEditorSubsystem<UImportSubsystem>()
-       ->OnAssetReimport.AddLambda([](UObject* Object) {...});
+GEditor->GetEditorSubsystem<UImportSubsystem>()->OnAssetReimport.AddLambda([](UObject* Object) {...});
 ```
 
 也可以广播以上代理调用导入模块。

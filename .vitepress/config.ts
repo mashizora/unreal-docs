@@ -35,6 +35,7 @@ export default defineConfig({
           text: '拓展 Editor',
           collapsible: true,
           items: [
+            { text: '拓展 Editor 概览', link: '/unreal/extend/intro' },
             { text: '自定义 Commands', link: '/unreal/extend/commands' },
             { text: '拓展菜单', link: '/unreal/extend/menu' },
             { text: '拓展窗口', link: '/unreal/extend/window' },
@@ -44,11 +45,12 @@ export default defineConfig({
           text: 'Slate UI',
           collapsible: true,
           items: [
-            { text: '简介', link: '/unreal/slate/intro' },
-            { text: '布局', link: '/unreal/slate/layout' },
+            { text: 'Slate UI 概览', link: '/unreal/slate/intro' },
             { text: 'Slate 控件', link: '/unreal/slate/widgets' },
+            { text: 'Slate 表达式', link: '/unreal/slate/expr' },
+            { text: 'Slate 布局', link: '/unreal/slate/layout' },
+            { text: '声明 Slate 控件', link: '/unreal/slate/declare' },
             { text: '细节面板', link: '/unreal/slate/details' },
-            { text: '定义控件', link: '/unreal/slate/define' },
             { text: '杂项', link: '/unreal/slate/misc' },
             { text: '编写中', link: '/unreal/slate/writing' },
           ],
@@ -68,7 +70,7 @@ export default defineConfig({
         {
           text: '自动化脚本',
           collapsible: true,
-          items: [{ text: '编写中', link: '/unreal/automation/writing' }],
+          items: [{ text: '编写中', link: '/unreal/auto/writing' }],
         },
       ],
     },

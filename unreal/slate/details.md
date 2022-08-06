@@ -1,5 +1,7 @@
 # 细节面板
 
+编写中...
+
 ## 关于细节面板
 
 细节面板（Details Panel）是 Unreal Editor 中很常用的一个控件。编辑器主界面中细节窗口、设置窗口中的选项列表、各种资源编辑器中的属性列表等都是使用细节面板系统构建的。
@@ -15,9 +17,7 @@
 下例展示一个可以显示当前选中 `Actor` 属性的细节面板。
 
 ```cpp
-auto SelectedActors = GEditor
-        ->GetEditorSubsystem<UEditorActorSubsystem>()
-        ->GetSelectedLevelActors();
+auto SelectedActors = GEditor->GetEditorSubsystem<UEditorActorSubsystem>()->GetSelectedLevelActors();
 if (SelectedActors.Num() > 0) {
     TArray<UObject*> SelectedObjects;
     for (const auto Actor : SelectedActors) {
@@ -69,6 +69,14 @@ SNew(SVerticalBox)
 [
     Details.ToSharedRef()
 ]
+```
+
+## 自定义细节面板
+
+继承 `IDetailCustomization`
+
+```cpp
+virtual void CustomizeDetails(IDetailLayoutBuilder& DetailLayout) override;
 ```
 
 ## 总结
