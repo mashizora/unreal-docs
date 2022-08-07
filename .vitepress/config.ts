@@ -26,7 +26,7 @@ export default defineConfig({
           text: '基础',
           collapsible: true,
           items: [
-            { text: '智能指针', link: '/unreal/basic/smart-pointer' },
+            { text: '智能指针', link: '/unreal/basic/pointer' },
             { text: '代理机制', link: '/unreal/basic/delegate' },
             { text: '模块', link: '/unreal/basic/module' },
           ],
@@ -46,12 +46,10 @@ export default defineConfig({
           collapsible: true,
           items: [
             { text: 'Slate UI 概览', link: '/unreal/slate/intro' },
-            { text: 'Slate 控件', link: '/unreal/slate/widgets' },
+            { text: 'Slate 控件', link: '/unreal/slate/widget' },
             { text: 'Slate 表达式', link: '/unreal/slate/expr' },
             { text: 'Slate 布局', link: '/unreal/slate/layout' },
-            { text: '声明 Slate 控件', link: '/unreal/slate/declare' },
             { text: '细节面板', link: '/unreal/slate/details' },
-            { text: '杂项', link: '/unreal/slate/misc' },
             { text: '编写中', link: '/unreal/slate/writing' },
           ],
         },
@@ -71,6 +69,15 @@ export default defineConfig({
           text: '自动化脚本',
           collapsible: true,
           items: [{ text: '编写中', link: '/unreal/auto/writing' }],
+        },
+        {
+          text: '杂项',
+          collapsible: true,
+          items: [
+            { text: '消息通知', link: '/unreal/misc/notif' },
+            { text: '进度条窗口', link: '/unreal/misc/progress' },
+            { text: '编写中', link: '/unreal/misc/writing' },
+          ],
         },
       ],
     },

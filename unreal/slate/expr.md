@@ -98,7 +98,7 @@ SNew(WidgetType).EventName_UObject(UObject, Method)         // UObject Class Met
 
 ## 绑定 Slot 属性
 
-在介绍控件基本类型时提到，派生自 `SCompoundWidget` 的 Slete 控件拥有 Slot 属性，可为其绑定 Slate 控件作为当前控件的子控件。在描述子控件时，使用 `[]` 包裹子控件对应的 Slate 表达式。
+在介绍控件基本类型时提到，派生自 `SCompoundWidget` 的 Slete 控件拥有 Slot 属性，可为其绑定 Slate 控件作为当前控件的子控件。在描述子控件时，使用 `[...]` 包裹子控件对应的 Slate 表达式。
 
 Slot 属性有 Default Slot 和 Named Slot 两种。Default Slot 在绑定时可省略 Slot 名：
 
@@ -106,7 +106,7 @@ Slot 属性有 Default Slot 和 Named Slot 两种。Default Slot 在绑定时可
 SNew(WidgetType)
 // .DefaultSlotName()
 [
-    SNew(WidgetType)
+    SNew(...)
 ]
 ```
 
@@ -116,13 +116,13 @@ Named Slot 则必须在绑定时显式指定 Slot 名：
 SNew(WidgetType)
 .NamedSlotName()
 [
-    SNew(WidgetType)
+    SNew(...)
 ]
 ```
 
 派生自 `SCompoundWidget` 的 Slate 控件通过 Slot 属性实现控件嵌套。由于每个 Slot 仅能容纳一个子控件，导致每种控件可容纳的子控件总数是确定的，这不便于实现一些布局类控件。
 
-## 使用 `Slot()` 方法
+## `Slot()` 方法
 
 为解决 Slot 属性的局限性问题，派生自 `SPanel` 的 Slate 控件通过 `Slot()` 方法实现了在控件中包含多个并列结构的子控件。下面给出一个使用 `Slot()` 方法的例子：
 
@@ -130,14 +130,14 @@ SNew(WidgetType)
 SNew(WidgetType)
 + WidgetType::Slot().ArgName(ArgValue)
 [
-    SNew(WidgetType)
+    SNew(...)
 ]
 + WidgetType::Slot().ArgName(ArgValue)
 [
-    SNew(WidgetType)
+    SNew(...)
 ]
 ```
 
-从以上 Slate 表达式中可以看出，Slate 核心库重写了 `+` 运算符，实现了将 `[]` 内实例化的子控件通过 `Slot()` 方法作为参数传递给当前控件。
+从以上 Slate 表达式中可以看出，Slate 核心库重写了 `+` 运算符，实现了将 `[...]` 内实例化的子控件通过 `Slot()` 方法作为参数传递给当前控件。
 
 `Slot()` 方法也可绑定属性，但要注意，`Slot()` 方法的功能只是传递参数，并不实例化 Slate 控件。这里的 `Slot()` 属性与前文提到的控件属性有本质上的区别。在 Slate UI 中，拥有 `Slot()` 方法的 Slate 控件大多为布局类控件，相应地， `Slot()` 属性也大多与布局相关。

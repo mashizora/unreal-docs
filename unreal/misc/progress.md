@@ -1,21 +1,4 @@
-# Unreal Editor Development Misc
-
-## 通知推送 | Notification
-
-`FSlateNotificationManager` 管理着 Unreal Editor 中的大多数通知弹窗，可以通过向其全局实例添加通知的方式便捷的实现通知推送。
-
-- `FNotificationInfo`：记录一个通知信息的结构体
-
-- `AddNotification(Info)`：通过 `FSlateNotificationManager` 推送通知，需传入一个 `FNotificationInfo` 作为信息
-
-下面给出一个通过全局 `FSlateNotificationManager` 实例在 Unreal Editor 中推送通知的例子：
-
-```cpp
-FNotificationInfo Info(FText::FromString("Test Notification..."));
-FSlateNotificationManager::Get().AddNotification(Info);
-```
-
-## 进度条窗口 | Slow Task Progress Window
+# 进度条窗口
 
 `FScopedSlowTask` 类封装了任务进度条窗口，可以方便地使用它在执行复杂多任务时给用户提供实时的视觉反馈。
 

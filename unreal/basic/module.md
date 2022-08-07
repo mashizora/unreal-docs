@@ -1,6 +1,6 @@
 # Unreal Module
 
-`IMPLEMENT_MODULE(<My Module Class>, <Module name string>)` 声明 Unreal Module
+`IMPLEMENT_MODULE(ModuleClass, ModuleName)` 声明 Unreal Module
 
 ## 模块接口 | Module Interface
 
