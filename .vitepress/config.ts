@@ -56,7 +56,7 @@ export default defineConfig({
           ],
         },
         {
-          text: '自定义资产类型',
+          text: '资产类型',
           collapsible: true,
           items: [
             { text: '资产类型概览', link: '/unreal/asset/intro' },

@@ -2,46 +2,41 @@
 
 ## Slate 控件
 
-Slate UI 系统的基本单位是控件，有 GUI 开发经验的读者应该都能理解控件的概念，在这里不过多赘述。
+Slate 控件是所有基于 Slate UI 构建的 GUI 的基本单位。有 GUI 开发经验的读者应该都能理解控件的概念，在这里不过多赘述。
 
-在 Unreal 中，所有 Slate 控件的基类是 `SWidget`，所有 Slate 控件的派生类均按照 `S + 控件名` 的规则命名。
+在 Unreal 中，所有 Slate 控件的基类是 `SWidget`，其所有派生类命名均带有 `S` 前缀。
 
-## 实例化控件
+## 控件属性
 
-Slate 提供了一组用于实例化控件的宏，它们分别是：
+Slate 控件属性主要分为 4 类，分别是：
 
-`SNew(WidgetType)`：实例化控件并返回其结构
+- Attribute：一般属性，支持绑定属性值或绑定返回属性值的函数。
+- Argument：一般属性，仅支持绑定属性值。
+- Event：事件，支持绑定 Delegate 回调函数。
+- Slot：子控件槽，支持使用 Slate 表达式绑定 Slate 控件。
 
-`SAssignNew(ExposeAs, WidgetType)`：与 `SNew()` 行为一致，同时将控件指针赋给 `ExposeAs`
+控件属性的绑定需要用到 Slate 表达式，相关语法将在下一章节中详细介绍。
 
-`SArgumentNew(InArgs, WidgetType)`：使用 `InArgs` 作为参数实例化控件并返回其结构
+## 控件基本类型
 
-这三个宏的内部实现均为使用 Unreal 智能引用构造 Widget 。
+Slate 核心库依据可容纳子控件的数量设计了三种控件基本类型：
 
-## 控件类型 | Widget Type
+- `SLeafWidget` : 派生类无 Slot 属性，不包含子控件。多用于基本控件。
+- `SCompoundWidget` : 派生类有 Slot 属性，可包含数量固定的子控件。多用于功能性控件。
+- `SPanel` : 派生类实现 `Slot()` 方法，可包含多个并列结构的子控件。多用于布局类控件。
 
-`SLeafWidget` : 无 `Slot()` 成员，不包含子 `Widget`
+在插件开发过程中，一般选择继承 `SCompoundWidget` 设计自定义控件。
 
-`SPanel` : 通过子类实现 `Slot()` 结构，可包含多个子 `Widget`
+---
 
-`SCompoundWidget` : 有显式命名的 `Slot()` 成员，可包含数量固定的 `Widget`
+---
 
-## 基本控件 | Basic Widgets
+WIP...
+
+## ~~基本控件 | Basic Widgets~~
 
 ### `SDockTab`
 
 在拓展窗口章节中，我们提到了使用 `FTabManager` 注册自定义窗口，其中 `FOnSpawnTab` 代理需要返回的控件就是该控件。
 
 `SDockTab` 控件描述了一个 Tab 的标签信息和内容，是构建 Unreal 内独立窗口应用的入口。
-
-## 开发工具
-
-Unreal Editor 的开发工具中提供了两款可以辅助我们学习和开发 Unreal 编辑器的工具：
-
-- STARSHIP GALLERY：该工具位于 `Tools -> Debug -> Debug Tools -> Test Suite`  
-  该工具展示了大部分常用的 Slate 控件和对应名称。
-
-- Widget Reflector：该工具位于 `Tools -> Debug -> Widget Reflector`  
-  该工具可以从编辑器中拾取 Widget，并展示出其树形结构。
-
-对于不嫌麻烦的读者来说，拿着这两个开发工具，结合阅读 Unreal Editor 源码，已经可以编写绝大部分 UI 了。

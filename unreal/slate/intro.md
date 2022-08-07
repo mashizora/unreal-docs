@@ -19,6 +19,19 @@ Unreal Editor 插件主要使用 C++ 和 Unreal 核心库开发，理论上我�
 
 以上只是一些个人见解，实际开发时是否选择 Slate UI 还需具体问题具体分析。上文提到的三个 C++ 生态下其他的 GUI 框架也都非常优秀，在工具类软件开发领域有大量应用实例。但即使不打算使用 Slate UI，学习它也会对深入理解 Unreal Editor 有很大帮助。
 
+## Debug 工具
+
+Unreal Editor 提供了两款与 Slate UI 相关的 Debug 工具：
+
+- Widget Reflector：
+  - 位于 `Tools -> Debug -> Widget Reflector` ，也可使用命令 `WidgetReflector` 打开。
+  - 该工具可从编辑器中拾取控件，并展示出控件上下文的树形结构。
+- STARSHIP GALLERY：
+  - 位于 `Tools -> Debug -> Debug Tools -> Test Suite` 。
+  - 该工具展示了常用的 Slate 基本控件和对应名称。
+
+使用这两个 Debug 工具，可以辅助我们学习 Slate UI 和 Unreal Editor 开发。
+
 ## 其他资料
 
 关于 Slate UI，社区中存在一些可以简化开发流程的方案，虽然这些方案对 Slate UI 的特性支持尚不完全，但仍提供了不错的思路：
