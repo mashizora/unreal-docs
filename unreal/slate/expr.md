@@ -44,13 +44,9 @@ Slate 表达式提供了一组用于实例化控件的宏，它们分别是：
 - `SAssignNew(ExposeAs, WidgetType)`：实例化控件，同时将控件引用赋给 `ExposeAs`
 - `SArgumentNew(InArgs, WidgetType)`：使用 `InArgs` 作为参数实例化控件
 
-这三个宏均使用 Unreal 智能引用构造 Widget 。相较之下，`SNew()` 最为常用；`SAssignNew()` 在一些需要获取控件引用的场景下能减少代码量，增强易读性；`SArgumentNew()` 则提供了极高的自由度，可以用来构造复杂的自定义控件。
+这三个宏均使用 Unreal 智能引用实例化 Widget 。相较之下，`SNew()` 最为常用；`SAssignNew()` 在一些需要获取控件引用的场景下能减少代码量，增强易读性；`SArgumentNew()` 则提供了极高的自由度，可以用来构建复杂的自定义控件。
 
-## 属性绑定
-
-上一章中介绍了 Slate 控件的 4 种基本属性。本章以常用基本控件 `SButton` 为例演示使用 Slate 表达式绑定控件属性。`SButton` 派生自 `SCompoundWidget` ，拥有全部 4 类属性。
-
-### 绑定 Attribute 属性
+## 绑定 Attribute 属性
 
 可以通过以下语法为 Attribute 属性绑定属性值：
 
@@ -68,7 +64,7 @@ SNew(WidgetType).AttrName(ObjectRef, Method)                // SP Class Method
 SNew(WidgetType).AttrName_UObject(UObject, Method)          // UObject Class Method
 ```
 
-### 绑定 Argument 属性
+## 绑定 Argument 属性
 
 可以通过以下语法为 Argument 属性绑定属性值：
 
@@ -78,7 +74,7 @@ SNew(WidgetType).ArgName(ArgValue)
 
 Argument 属性不支持绑定函数，仅支持绑定值。
 
-### 绑定 Event 属性
+## 绑定 Event 属性
 
 可以通过以下语法为 Event 属性绑定 Delegate 回调函数：
 
@@ -100,14 +96,48 @@ SNew(WidgetType).EventName(ObjectRef, Method)               // SP Class Method
 SNew(WidgetType).EventName_UObject(UObject, Method)         // UObject Class Method
 ```
 
-### 绑定 Slot 属性
+## 绑定 Slot 属性
+
+在介绍控件基本类型时提到，派生自 `SCompoundWidget` 的 Slete 控件拥有 Slot 属性，可为其绑定 Slate 控件作为当前控件的子控件。在描述子控件时，使用 `[]` 包裹子控件对应的 Slate 表达式。
+
+Slot 属性有 Default Slot 和 Named Slot 两种。Default Slot 在绑定时可省略 Slot 名：
 
 ```cpp
-SNew(SButton).Text(FText::FromString("Test"))
+SNew(WidgetType)
+// .DefaultSlotName()
+[
+    SNew(WidgetType)
+]
 ```
 
-## 使用 Slot() 方法
+Named Slot 则必须在绑定时显式指定 Slot 名：
 
 ```cpp
-SNew(SButton).Text(FText::FromString("Test"))
+SNew(WidgetType)
+.NamedSlotName()
+[
+    SNew(WidgetType)
+]
 ```
+
+派生自 `SCompoundWidget` 的 Slate 控件通过 Slot 属性实现控件嵌套。由于每个 Slot 仅能容纳一个子控件，导致每种控件可容纳的子控件总数是确定的，这不便于实现一些布局类控件。
+
+## 使用 `Slot()` 方法
+
+为解决 Slot 属性的局限性问题，派生自 `SPanel` 的 Slate 控件通过 `Slot()` 方法实现了在控件中包含多个并列结构的子控件。下面给出一个使用 `Slot()` 方法的例子：
+
+```cpp
+SNew(WidgetType)
++ WidgetType::Slot().ArgName(ArgValue)
+[
+    SNew(WidgetType)
+]
++ WidgetType::Slot().ArgName(ArgValue)
+[
+    SNew(WidgetType)
+]
+```
+
+从以上 Slate 表达式中可以看出，Slate 核心库重写了 `+` 运算符，实现了将 `[]` 内实例化的子控件通过 `Slot()` 方法作为参数传递给当前控件。
+
+`Slot()` 方法也可绑定属性，但要注意，`Slot()` 方法的功能只是传递参数，并不实例化 Slate 控件。这里的 `Slot()` 属性与前文提到的控件属性有本质上的区别。在 Slate UI 中，拥有 `Slot()` 方法的 Slate 控件大多为布局类控件，相应地， `Slot()` 属性也大多与布局相关。
