@@ -1,4 +1,4 @@
 node_modules
 package-lock.json
 
-.vitepress/dist
+docs/.vitepress/dist
