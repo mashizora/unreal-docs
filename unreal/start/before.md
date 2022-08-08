@@ -1,20 +1,27 @@
 # 前置要求
 
-## 目标群体
+## 面向群体
 
-本文档假定读者为以下群体：
+本文档主要面向 TA / TD 而非引擎开发，以应用为主，难度中等偏易。
 
-- 阅读过 Unreal 官方文档，熟悉 Unreal Editor 的基本操作
+本文档不适用以下群体：
+
+- 对 Unreal 底层有较深入研究的同学。
+- 完全没有接触过 Unreal 开发的同学。
+
+## 技能要求
+
+本文档假定读者：
+
 - 了解现代 C++ 语法和特性
-- 使用过任何一款 UI 框架或有 Web 前端开发经历或了解 GUI 组成的基本原理
-- 希望学习 Unreal Editor 开发的开发者
+- 阅读过 Unreal 官方文档，熟悉 Unreal Editor 的基本操作
+- 使用过任何一款 GUI 框架或有 Web 前端开发经验
 
-本文不适合以下群体：
+## 学习目标
 
-- 已经阅读过 Unreal Engine 源码，理解大部分机制的开发者
-- 未使用过 Unreal Engine 的开发者
-- 不了解现代 C++ 特性，没有阅读 C++ 源代码能力的开发者
+初步具备魔改 Unreal Editor 或开发相关工具链的能力。
 
-## 其他
+## 建议阅读
 
-本文主要从 TA/TD 的视角出发，深入源代码了解 UE Editor 的一些实现原理，但仅为帮助理解架构和设计模式，不过分深究代码层面的实现细节。
+- [现代 C++ 教程](https://changkun.de/modern-cpp/)
+- [Unreal Engine 5 官方文档](https://docs.unrealengine.com/5.0/zh-CN/)

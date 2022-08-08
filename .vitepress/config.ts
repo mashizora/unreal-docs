@@ -6,8 +6,8 @@ import path from 'path';
 
 export default defineConfig({
   lang: 'en-US',
-  title: 'unreal editor dev',
-  description: 'unreal editor dev',
+  title: 'mashisora Docs',
+  description: 'mashisora Docs',
 
   lastUpdated: true,
 
