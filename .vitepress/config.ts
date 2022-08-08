@@ -1,86 +1,81 @@
 import { defineConfig } from 'vitepress';
 import { version } from '../package.json';
 
-import fs from 'fs';
-import path from 'path';
-
 export default defineConfig({
-  lang: 'en-US',
-  title: 'mashisora Docs',
-  description: 'mashisora Docs',
+  lang: 'zh-CN',
+  title: 'Unreal Editor Dev Docs',
+  description: `mashisora's Unreal Docs`,
 
   lastUpdated: true,
 
   themeConfig: {
-    sidebar: {
-      '/unreal/': [
-        {
-          text: '开始',
-          collapsible: true,
-          items: [
-            { text: '关于本文档', link: '/unreal/start/about' },
-            { text: '前置要求', link: '/unreal/start/before' },
-          ],
-        },
-        {
-          text: '基础',
-          collapsible: true,
-          items: [
-            { text: '智能指针', link: '/unreal/basic/pointer' },
-            { text: '代理机制', link: '/unreal/basic/delegate' },
-            { text: '模块', link: '/unreal/basic/module' },
-          ],
-        },
-        {
-          text: '拓展 Editor',
-          collapsible: true,
-          items: [
-            { text: '拓展 Editor 概览', link: '/unreal/extend/intro' },
-            { text: 'Commands', link: '/unreal/extend/commands' },
-            { text: '拓展菜单', link: '/unreal/extend/menu' },
-            { text: '拓展 Tab', link: '/unreal/extend/tab' },
-          ],
-        },
-        {
-          text: 'Slate UI',
-          collapsible: true,
-          items: [
-            { text: 'Slate UI 概览', link: '/unreal/slate/intro' },
-            { text: 'Slate 控件', link: '/unreal/slate/widget' },
-            { text: 'Slate 表达式', link: '/unreal/slate/expr' },
-            { text: 'Slate 布局', link: '/unreal/slate/layout' },
-            { text: '细节面板', link: '/unreal/slate/details' },
-            { text: '编写中', link: '/unreal/slate/writing' },
-          ],
-        },
-        {
-          text: '资产类型',
-          collapsible: true,
-          items: [
-            { text: '资产类型概览', link: '/unreal/asset/intro' },
-            { text: '资产类型 Object', link: '/unreal/asset/object' },
-            { text: '资产类型 Factory', link: '/unreal/asset/factory' },
-            { text: '资产类型 Actions', link: '/unreal/asset/actions' },
-            { text: '资产编辑器', link: '/unreal/asset/editor' },
-            { text: '编写中', link: '/unreal/asset/writing' },
-          ],
-        },
-        {
-          text: '自动化脚本',
-          collapsible: true,
-          items: [{ text: '编写中', link: '/unreal/auto/writing' }],
-        },
-        {
-          text: '杂项',
-          collapsible: true,
-          items: [
-            { text: '消息通知', link: '/unreal/misc/notif' },
-            { text: '进度条窗口', link: '/unreal/misc/progress' },
-            { text: '编写中', link: '/unreal/misc/writing' },
-          ],
-        },
-      ],
-    },
+    sidebar: [
+      {
+        text: '开始',
+        collapsible: true,
+        items: [
+          { text: '关于本文档', link: '/start/about' },
+          { text: '前置要求', link: '/start/before' },
+        ],
+      },
+      {
+        text: '基础',
+        collapsible: true,
+        items: [
+          { text: '智能指针', link: '/basic/pointer' },
+          { text: '代理机制', link: '/basic/delegate' },
+          { text: '模块', link: '/basic/module' },
+        ],
+      },
+      {
+        text: '拓展 Editor',
+        collapsible: true,
+        items: [
+          { text: '拓展 Editor 概览', link: '/extend/intro' },
+          { text: 'Commands', link: '/extend/commands' },
+          { text: '拓展菜单', link: '/extend/menu' },
+          { text: '拓展 Tab', link: '/extend/tab' },
+        ],
+      },
+      {
+        text: 'Slate UI',
+        collapsible: true,
+        items: [
+          { text: 'Slate UI 概览', link: '/slate/intro' },
+          { text: 'Slate 控件', link: '/slate/widget' },
+          { text: 'Slate 表达式', link: '/slate/expr' },
+          { text: 'Slate 布局', link: '/slate/layout' },
+          { text: '细节面板', link: '/slate/details' },
+          { text: '编写中', link: '/slate/writing' },
+        ],
+      },
+      {
+        text: '资产类型',
+        collapsible: true,
+        items: [
+          { text: '资产类型概览', link: '/asset/intro' },
+          { text: '资产类型 Object', link: '/asset/object' },
+          { text: '资产类型 Factory', link: '/asset/factory' },
+          { text: '资产类型 Actions', link: '/asset/actions' },
+          { text: '资产编辑器', link: '/asset/editor' },
+          { text: '编写中', link: '/asset/writing' },
+        ],
+      },
+      {
+        text: '自动化脚本',
+        collapsible: true,
+        items: [{ text: '编写中', link: '/auto/writing' }],
+      },
+      {
+        text: '杂项',
+        collapsible: true,
+        items: [
+          { text: '消息通知', link: '/misc/notif' },
+          { text: '进度条窗口', link: '/misc/progress' },
+          { text: '编写中', link: '/misc/writing' },
+        ],
+      },
+    ],
 
     editLink: {
       pattern: 'https://github.com/mashisora/docs/edit/main/:path',

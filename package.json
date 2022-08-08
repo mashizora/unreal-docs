@@ -1,8 +1,10 @@
 {
-  "name": "vitepress-starter",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "unreal-docs",
+  "version": "0.0.1",
+  "description": "A Unreal Editor Development Documentation.",
+  "author": "mashisora <mashisora@outlook.com>",
   "license": "MIT",
+  "private": true,
   "scripts": {
     "dev": "vitepress dev",
     "build": "vitepress build",
@@ -12,5 +14,9 @@
     "@types/node": "^18.6.1",
     "vitepress": "^1.0.0-alpha.4",
     "vue": "^3.2.37"
-  }
+  },
+  "keywords": [
+    "unreal",
+    "docs"
+  ]
 }

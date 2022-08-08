@@ -2,14 +2,13 @@
 layout: home
 
 hero:
-  name: Docs
-  text: Docs
-  tagline: some docs
+  name: Unreal Editor
+  text: Development Documentation
   actions:
     - theme: brand
-      text: Unreal Engine
-      link: /unreal/start/about
+      text: 开始阅读
+      link: /start/about
     - theme: alt
-      text: View on GitHub
-      link: https://github.com/mashisora/docs
+      text: 在 GitHub 上查看
+      link: https://github.com/mashisora/unreal-docs
 ---
