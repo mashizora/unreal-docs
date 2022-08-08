@@ -1,8 +1,7 @@
-# DOCS
+# Unreal Editor Dev Docs
 
-本 repo 为个人文档存档，目前包含：
+本文档为个人学习 Unreal Editor 开发过程中编写，目前尚处与早期开发阶段，暂时不对内容的正确性和准确性负责，同时欢迎读者指正错误。
 
-- Unreal Editor 开发文档（编写中）
-  - 记录个人学习 Unreal Editor 开发和阅读相关源码的过程
-  - 系统讲解入门 Unreal Editor 开发所需知识点
-  - 目前尚处与早期开发阶段，暂时不对书中内容负责
+短期目标：帮助自己加深对 Unreal Editor 底层的理解。
+
+长期目标：整理出一套体系化的 Unreal Editor 开发参考资料，解决 Unreal 中文社区相关资料过于碎片化的问题。

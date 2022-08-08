@@ -11,7 +11,7 @@
     "serve": "vitepress serve"
   },
   "devDependencies": {
-    "@types/node": "^18.6.1",
+    "@types/node": "^18.6.4",
     "vitepress": "^1.0.0-alpha.4",
     "vue": "^3.2.37"
   },
