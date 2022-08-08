@@ -1,18 +1,12 @@
-# Unreal Tab (Window)
+# 拓展 Tab
 
-## 认识窗口 | Tabs
+## 认识 Tab
 
-> 在 Unreal Editor 的 UI 框架下，Tab 的语义近似等同于一般桌面应用中的 Window，与浏览器的选项卡有着类似的行为。本文为了阐述方便，默认使用 “窗口” 一词作为 Tab 的翻译，在需要区分二者时使用英语。请不要将此 “窗口” 与一般应用中的窗口混淆。
->
-> 实际上，Unreal Editor 中的所有的窗口（Window）都是以 Tab 或 Tab 组合的形式呈现的。
+在 Unreal Editor 的 UI 框架下，所有窗口都是以 Tab 或 Tab 组合的形式呈现的，每个 Tab 均可任意组合和停靠。这一设计使得 Unreal Editor 在自定义布局上有着极高的自由度。
 
-在 Unreal Editor 中，单例对象 `FGlobalTabmanager` 派生自 `FTabManager` ，管理着所有编辑器中的全局 Tab，这样做的好处有：
+在 Unreal Editor 中，单例对象 `FGlobalTabmanager` 管理着所有编辑器中的全局 Tab，可以通过该对象方便地添加自定义 Tab 。
 
-- 任何一个 Tab 可实现在窗口中任意位置的停靠，便于自定义布局
-- 良好的多 Tab 窗口支持
-- Tab 行为的一致化，便于管理和操作
-
-## 注册窗口 | Register
+## 注册 Tab
 
 `FTabManager` 拥有两个记录 Tab 信息的成员：
 
@@ -44,11 +38,11 @@ FGlobalTabmanager::Get()->RegisterNomadTabSpawner(
 
 更多细节可参考：`Runtime\Slate\Private\Framework\Docking\TabManager.cpp`
 
-对于一般插件开发，我们往往需要构建一个独立的窗口。此时可优先考虑将插件的 Tab 注册到 `FGlobalTabmanager` 的 `NomadTabSpawner` 中。实际上，Unreal 提供的官方插件工程模板也是这样做的。
+对于一般插件开发，我们往往需要构建一个独立 Tab 。此时可优先考虑将插件的 Tab 注册到 `FGlobalTabmanager` 的 `NomadTabSpawner` 中。实际上，Unreal 提供的官方插件工程模板也是这样做的。
 
-## 窗口属性 | Property
+## Tab 属性
 
-在完成窗口的注册后，注册函数会返回一个 `FTabSpawnerEntry&` ，我们可以通过此 Entry 设置窗口的属性。例如：
+在完成 Tab 的注册后，注册函数会返回一个 `FTabSpawnerEntry&` ，我们可以通过此 Entry 设置 Tab 的属性。例如：
 
 ```cpp
 FTabSpawnerEntry& Entry = FGlobalTabmanager::Get()->RegisterNomadTabSpawner(...);
@@ -66,7 +60,7 @@ FGlobalTabmanager::Get()->RegisterNomadTabSpawner(...)
 
 全部可配置属性参考：`Runtime\Slate\Private\Framework\Docking\TabManager.h`
 
-## 唤起窗口 | Invoke
+## 唤起 Tab
 
 我们可以使用如下方法来唤起一个已在 `FGlobalTabmanager` 中注册的全局 Tab ：
 
@@ -74,7 +68,7 @@ FGlobalTabmanager::Get()->RegisterNomadTabSpawner(...)
 FGlobalTabmanager::Get()->TryInvokeTab(FName("OutputLog"));
 ```
 
-通过 `FTabManager::TryInvokeTab()` 方法唤起一个窗口的规则如下：
+通过 `FTabManager::TryInvokeTab()` 方法唤起一个 Tab 的规则如下：
 
 - 若 Tab 已实例化：
   - Window 处于打开状态时：聚焦 Window
@@ -83,9 +77,9 @@ FGlobalTabmanager::Get()->TryInvokeTab(FName("OutputLog"));
   - 有已实例化的同类 Tab 时：在同类 Tab 的 Window 中打开
   - 无已实例化的同类 Tab 时：新建 Window 并打开
 
-## 注销窗口 | Unregister
+## 注销 Tab
 
-注销窗口时，使用与注册相应的 API 即可：
+注销 Tab 时，使用与注册相应的 API 即可：
 
 ```cpp
 FGlobalTabmanager::Get()->UnregisterTabSpawner(TabName);

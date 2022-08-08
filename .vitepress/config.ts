@@ -36,9 +36,9 @@ export default defineConfig({
           collapsible: true,
           items: [
             { text: '拓展 Editor 概览', link: '/unreal/extend/intro' },
-            { text: '自定义 Commands', link: '/unreal/extend/commands' },
+            { text: 'Commands', link: '/unreal/extend/commands' },
             { text: '拓展菜单', link: '/unreal/extend/menu' },
-            { text: '拓展窗口', link: '/unreal/extend/window' },
+            { text: '拓展 Tab', link: '/unreal/extend/tab' },
           ],
         },
         {

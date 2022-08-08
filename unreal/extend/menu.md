@@ -1,6 +1,6 @@
 # Unreal Editor Menus
 
-## 认识菜单 | Menus
+## 认识菜单
 
 Unreal Editor 的菜单结构为：
 
@@ -16,7 +16,7 @@ Unreal 还提供了 `FMenuBuilder` `FExtender` 等可用来拓展菜单的 API�
 
 考虑到代码的简洁性、一致性和可维护性，本文优先使用 `UToolMenu` 相关 API 。
 
-## 如何拓展菜单 | Extend
+## 如何拓展菜单
 
 `UToolMenus` 是一个全局对象，Unreal Editor 的所有内置菜单均由其管理，我们在插件中使用 `UToolMenus` 注册自定义菜单时，需要确保 `UToolMenus` 及其相关系统已就绪。可以将拓展菜单的函数传入 `UToolMenus::RegisterStartupCallback()` ，来确保自定义菜单注册时 `UToolMenus` 系统已准备就绪
 
@@ -30,7 +30,7 @@ UToolMenus::RegisterStartupCallback(
 }));
 ```
 
-## 构造控件 | Widget
+## 构造控件
 
 在一些使用场景下，我们需要获取菜单对象对应的 `SWidget` ，例如：
 
@@ -52,7 +52,7 @@ UToolMenus::RegisterStartupCallback(
    TSharedRef<SWidget> MenuWidget = MenuBuilder.MakeWidget();
    ```
 
-## 拓展主菜单栏 | Main Menu
+## 拓展主菜单栏
 
 ### 拓展内置菜单
 
@@ -98,7 +98,7 @@ Section.AddMenuEntryWithCommandList(
 );
 ```
 
-## 拓展工具栏 | Toolbar Menu
+## 拓展工具栏
 
 拓展 Unreal Editor 主界面的工具栏。在 Unreal Editor 的工具栏中，使用 `ToolBarButton` 实现按钮，使用 `ComboButton` 实现带有菜单的按钮
 
@@ -143,7 +143,7 @@ Section.AddMenuEntryWithCommandList(
 );
 ```
 
-## 拓展右键菜单 | Context Menu
+## 拓展右键菜单
 
 以资源管理器的右键菜单为例，演示如何拓展右键菜单
 
@@ -160,7 +160,7 @@ Entry.SetCommandList(PluginCommands);
 
 Actor 右键菜单路径为 `LevelEditor.ActorContextMenu`
 
-## 拓展其他菜单 | Other Menus
+## 拓展其他菜单
 
 不难发现，通过 `UToolMenus` 进行 Unreal Editor 菜单拓展在用法上具有很高的一致性。前文也提到过，Unreal Editor 中的所有菜单均由 `UToolMenus` 对象维护，理论上可以使用这种方法拓展编辑器内的任何菜单。
 
