@@ -1,20 +1,20 @@
-# Commands
+# Commands 系统
 
-## 关于 Commands
+Commands 系统是 Unreal Editor 的一个重要组成部分，该系统将视图层命令（如复制粘贴、开始暂停、窗口切换等）进行封装，实现了命令全局管理、快捷键绑定、拖拽支持等特性，同时使得这些命令易于跨组件访问和复用。
 
-Commands 是 Unreal Editor 中的一个重要概念，可以将其理解为对 “UI 行为” 的抽象和封装。Unreal Editor 中 UI 控件的名称、描述、触发动作等均由 Commands 系统管理。
+Commands 系统主要涉及以下几个类：
 
-Commands 系统主要由如下几个类实现：
-
-- `FUICommandInfo` ：描述 Command 的基本信息。
-- `TCommands<>` ：持有一组 `FUICommandInfo`，负责 Command 的注册与生命周期维护。
+- `FUICommandInfo` ：描述 Command 信息。
+- `UIAction` ：描述 Action 信息
 - `FUICommandList` ：记录 Command 和 Action 的绑定关系。
+- `FInputChord` ：描述热键信息
+- `TCommands<>` ：持有一组 `FUICommandInfo`，负责 Command 的注册与生命周期维护。
 
-初看有些复杂，可以将 `TCommands<>` 理解为对若干个 Command 的封装，其中每个 Command 均由 `FUICommandInfo` 定义，这两者共同实现了 Command 基本信息的注册与生命周期维护，但未定义 UI 动作相关信息。`FUICommandList` 将 `FUICommandInfo` 与 Action 绑定，从而实现一个有效的 Command 。
+在本节中，将持有一组特定 `FUICommandInfo` 的 `TCommands<>` 派生类称作 Commands 。
+
+初看有些复杂，可以将 Commands 理解为若干个 `FUICommandInfo` 实例的集合，并实现这些实例的注册与生命周期维护。`FUICommandList` 将 `FUICommandInfo` 与 Action 绑定，从而实现一个有效的 Command 。
 
 下面将演示如何向 Unreal Editor 添加有效的自定义 Command 。
-
-在本章节中，将维护一组 `FUICommandList` 的 `TCommands<>` 的派生类称作 Commands
 
 ## 声明 Commands
 

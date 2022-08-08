@@ -1,7 +1,5 @@
 # 拓展 Tab
 
-## 关于 Tab
-
 在 Unreal Editor 的 UI 框架下，所有窗口都是以 Tab 或 Tab 组合的形式呈现的，每个 Tab 均可任意组合和停靠。这一设计使得 Unreal Editor 在自定义布局上有着极高的自由度。
 
 在 Unreal Editor 中，单例对象 `FGlobalTabmanager` 管理着所有编辑器中的全局 Tab，可以通过该对象方便地添加自定义 Tab 。

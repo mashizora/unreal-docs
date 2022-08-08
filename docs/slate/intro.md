@@ -1,4 +1,4 @@
-# Slate UI 概览
+# Slate UI
 
 ## 什么是 Slate UI
 

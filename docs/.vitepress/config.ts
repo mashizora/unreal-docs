@@ -31,8 +31,8 @@ export default defineConfig({
         text: '拓展 Editor',
         collapsible: true,
         items: [
-          { text: '拓展 Editor 概览', link: '/extend/intro' },
-          { text: 'Commands', link: '/extend/commands' },
+          { text: '拓展 Editor', link: '/extend/intro' },
+          { text: 'Commands 系统', link: '/extend/commands' },
           { text: '拓展菜单', link: '/extend/menu' },
           { text: '拓展 Tab', link: '/extend/tab' },
         ],
@@ -41,7 +41,7 @@ export default defineConfig({
         text: 'Slate UI',
         collapsible: true,
         items: [
-          { text: 'Slate UI 概览', link: '/slate/intro' },
+          { text: 'Slate UI', link: '/slate/intro' },
           { text: 'Slate 控件', link: '/slate/widget' },
           { text: 'Slate 表达式', link: '/slate/expr' },
           { text: 'Slate 布局', link: '/slate/layout' },
@@ -53,7 +53,7 @@ export default defineConfig({
         text: '资产类型',
         collapsible: true,
         items: [
-          { text: '资产类型概览', link: '/asset/intro' },
+          { text: '资产类型', link: '/asset/intro' },
           { text: '资产类型 Object', link: '/asset/object' },
           { text: '资产类型 Factory', link: '/asset/factory' },
           { text: '资产类型 Actions', link: '/asset/actions' },
