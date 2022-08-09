@@ -56,7 +56,7 @@ void FMyCommands::RegisterCommands() {
 在使用 Command 之前，需要向 Editor 的全局 Commands 实例注册自定义 Command，一般在模块启动的 `StartupModule()` 钩子中完成。仅需调用 `Register()` 方法即可完成注册。上文实现的 `RegisterCommands()` 会在 `Register()` 内部被调用。
 
 ```cpp
-FMyCommands::Register();
+FMyCommands::Register();    // RegisterCommands() will be called in Register()
 ```
 
 ## 绑定 Action
@@ -64,7 +64,6 @@ FMyCommands::Register();
 为已经创建好的 Command 绑定 Action ：
 
 ```cpp
-FMyCommands::Register();    // RegisterCommands() will be called in Register()
 PluginCommands = MakeShared<FUICommandList>();
 PluginCommands->MapAction(
   FMyCommands::Get().PluginAction,   // Command: FUICommandInfo

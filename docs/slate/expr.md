@@ -8,27 +8,27 @@
 SNew(SVerticalBox)
 + SVerticalBox::Slot().Padding(4.0f)
 [
-    SNew(SHorizontalBox)
-    + SHorizontalBox::Slot().Padding(2.0f)
-    [
-        SNew(SButton).Text(FText::FromString(TEXT("BTN 01")))
-    ]
-    + SHorizontalBox::Slot().Padding(2.0f)
-    [
-        SNew(SButton).Text(FText::FromString(TEXT("BTN 02")))
-    ]
+  SNew(SHorizontalBox)
+  + SHorizontalBox::Slot().Padding(2.0f)
+  [
+    SNew(SButton).Text(FText::FromString(TEXT("BTN 01")))
+  ]
+  + SHorizontalBox::Slot().Padding(2.0f)
+  [
+    SNew(SButton).Text(FText::FromString(TEXT("BTN 02")))
+  ]
 ]
 + SVerticalBox::Slot().Padding(4.0f)
 [
-    SNew(SHorizontalBox)
-    + SHorizontalBox::Slot().Padding(2.0f)
-    [
-        SNew(SButton).Text(FText::FromString(TEXT("BTN 03")))
-    ]
-    + SHorizontalBox::Slot().Padding(2.0f)
-    [
-        SNew(SButton).Text(FText::FromString(TEXT("BTN 04")))
-    ]
+  SNew(SHorizontalBox)
+  + SHorizontalBox::Slot().Padding(2.0f)
+  [
+    SNew(SButton).Text(FText::FromString(TEXT("BTN 03")))
+  ]
+  + SHorizontalBox::Slot().Padding(2.0f)
+  [
+    SNew(SButton).Text(FText::FromString(TEXT("BTN 04")))
+  ]
 ]
 ```
 
@@ -106,7 +106,7 @@ Slot 属性有 Default Slot 和 Named Slot 两种。Default Slot 在绑定时可
 SNew(WidgetType)
 // .DefaultSlotName()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -116,7 +116,7 @@ Named Slot 则必须在绑定时显式指定 Slot 名：
 SNew(WidgetType)
 .NamedSlotName()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -130,11 +130,11 @@ SNew(WidgetType)
 SNew(WidgetType)
 + WidgetType::Slot().ArgName(ArgValue)
 [
-    SNew(...)
+  SNew(...)
 ]
 + WidgetType::Slot().ArgName(ArgValue)
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 

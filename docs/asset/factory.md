@@ -17,22 +17,22 @@
 ```cpp
 UCLASS()
 class UCustomAssetFactory : public UFactory {
-	GENERATED_BODY()
+  GENERATED_BODY()
 
 public:
-	UCustomAssetFactory() {
-		bCreateNew = true;
-		bEditAfterNew = true;
-		SupportedClass = UCustomAsset::StaticClass();
-	}
-	virtual UObject* FactoryCreateNew(
-        UClass* InClass,
-        UObject* InParent,
-        FName InName,
-        EObjectFlags Flags,
-        UObject* Context,
-        FFeedbackContext* Warn
-    ) override;
+  UCustomAssetFactory() {
+    bCreateNew = true;
+    bEditAfterNew = true;
+    SupportedClass = UCustomAsset::StaticClass();
+  }
+  virtual UObject* FactoryCreateNew(
+    UClass* InClass,
+    UObject* InParent,
+    FName InName,
+    EObjectFlags Flags,
+    UObject* Context,
+    FFeedbackContext* Warn
+  ) override;
 };
 ```
 
@@ -44,13 +44,13 @@ public:
 
 ```cpp
 UObject* UCustomAssetFactory::FactoryCreateNew(
-	UClass* InClass,
-	UObject* InParent,
-	FName InName,
-	EObjectFlags Flags,
-	UObject* Context,
-	FFeedbackContext* Warn
+  UClass* InClass,
+  UObject* InParent,
+  FName InName,
+  EObjectFlags Flags,
+  UObject* Context,
+  FFeedbackContext* Warn
 ) {
-	return NewObject<UCustomAsset>(InParent, InClass, InName, Flags);
+  return NewObject<UCustomAsset>(InParent, InClass, InName, Flags);
 }
 ```

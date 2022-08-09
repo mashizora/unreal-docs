@@ -17,10 +17,10 @@ Unreal 已经定义了一些被内置资产类型使用的 Actions ，我们可�
 ```cpp
 class FCustomAssetTypeActions : public FAssetTypeActions_Base {
 public:
-	virtual FText GetName() const override { return FText::FromString(TEXT("Custom Asset")); }
-	virtual UClass* GetSupportedClass() const override { return UCustomAsset::StaticClass(); }
-	virtual FColor GetTypeColor() const override { return FColor::Black; }
-	virtual uint32 GetCategories() override { return EAssetTypeCategories::Misc; }
+  virtual FText GetName() const override { return FText::FromString(TEXT("Custom Asset")); }
+  virtual UClass* GetSupportedClass() const override { return UCustomAsset::StaticClass(); }
+  virtual FColor GetTypeColor() const override { return FColor::Black; }
+  virtual uint32 GetCategories() override { return EAssetTypeCategories::Misc; }
 };
 ```
 
@@ -33,13 +33,13 @@ public:
 ```cpp
 void FCustomAssetModule::StartupModule()
 {
-	auto& AssetToolsModule = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools");
-	auto& AssetTools = AssetToolsModule.Get();
-	AssetTypeActionsList.Add(MakeShared<FCustomAssetTypeActions>());
+  auto& AssetToolsModule = FModuleManager::LoadModuleChecked<FAssetToolsModule>("AssetTools");
+  auto& AssetTools = AssetToolsModule.Get();
+  AssetTypeActionsList.Add(MakeShared<FCustomAssetTypeActions>());
 
-	for (auto Actions : AssetTypeActionsList) {
-		AssetTools.RegisterAssetTypeActions(Actions);
-	}
+  for (auto Actions : AssetTypeActionsList) {
+    AssetTools.RegisterAssetTypeActions(Actions);
+  }
 }
 ```
 
@@ -52,13 +52,13 @@ void FCustomAssetModule::StartupModule()
 ```cpp
 void FCustomAssetModule::ShutdownModule()
 {
-	auto* AssetToolsModule = FModuleManager::GetModulePtr<FAssetToolsModule>("AssetTools");
-	if (AssetToolsModule != nullptr) {
-		auto& AssetTools = AssetToolsModule->Get();
-		for (auto Actions : AssetTypeActionsList) {
-			AssetTools.UnregisterAssetTypeActions(Actions);
-		}
-	}
+  auto* AssetToolsModule = FModuleManager::GetModulePtr<FAssetToolsModule>("AssetTools");
+  if (AssetToolsModule != nullptr) {
+    auto& AssetTools = AssetToolsModule->Get();
+    for (auto Actions : AssetTypeActionsList) {
+      AssetTools.UnregisterAssetTypeActions(Actions);
+    }
+  }
 }
 ```
 

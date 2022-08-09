@@ -8,10 +8,10 @@
 
 ```cpp
 void FAssetTypeActions_Custom::OpenAssetEditor(
-	const TArray<UObject*>& InObjects,
-	TSharedPtr<IToolkitHost> EditWithinLevelEditor
+  const TArray<UObject*>& InObjects,
+  TSharedPtr<IToolkitHost> EditWithinLevelEditor
 ) {
-	FSimpleAssetEditor::CreateEditor(EToolkitMode::Standalone, EditWithinLevelEditor, InObjects);
+  FSimpleAssetEditor::CreateEditor(EToolkitMode::Standalone, EditWithinLevelEditor, InObjects);
 }
 ```
 

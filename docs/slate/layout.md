@@ -43,7 +43,7 @@ SNew(SBox)
 .HeightOverride(128)
 .WidthOverride(128)
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -57,7 +57,7 @@ SNew(SHorizontalBox)
 + SHorizontalBox::Slot()
 // .AutoWidth()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -71,7 +71,7 @@ SNew(SVerticalBox)
 + SVerticalBox::Slot()
 // .AutoHeight()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -86,7 +86,7 @@ SNew(SScrollBox)
 .Orientation(Orient_Vertical)
 + SScrollBox::Slot()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -98,7 +98,7 @@ SNew(SScrollBox)
 SNew(SOverlay)
 + SOverlay::Slot()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -110,11 +110,11 @@ SNew(SOverlay)
 SNew(SGridPanel)
 + SGridPanel::Slot(0,0)
 [
-    SNew(...)
+  SNew(...)
 ]
 + SGridPanel::Slot(1,1)
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -127,11 +127,11 @@ SNew(SGridPanel)
 SNew(SUniformGridPanel)
 + SUniformGridPanel::Slot(0,0)
 [
-    SNew(...)
+  SNew(...)
 ]
 + SUniformGridPanel::Slot(1,1)
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -146,7 +146,7 @@ SNew(SWrapBox)
 .Orientation(Orient_Horizontal)
 + SWrapBox::Slot()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -158,7 +158,7 @@ SNew(SWrapBox)
 SNew(SUniformWrapPanel)
 + SUniformWrapPanel::Slot()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -171,7 +171,7 @@ SNew(SSplitter)
 .Orientation(Orient_Horizontal)
 + SSplitter::Slot()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 
@@ -184,7 +184,7 @@ SNew(SWidgetSwitcher)
 .WidgetIndex_Lambda([=] { return index; })
 + SWidgetSwitcher::Slot()
 [
-    SNew(...)
+  SNew(...)
 ]
 ```
 

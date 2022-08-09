@@ -17,15 +17,15 @@ TSharedRef<FTabSpawner> NomadTabSpawner;
 
 ```cpp
 FGlobalTabmanager::Get()->RegisterTabSpawner(
-    TabName,           // Name
-    FOnSpawnTab(),     // Delegate: (const FSpawnTabArgs&) -> TSharedRef<SDockTab>
-    FCanSpawnTab()     // Delegate: (const FSpawnTabArgs&) -> bool
+  TabName,           // Name
+  FOnSpawnTab(),     // Delegate: (const FSpawnTabArgs&) -> TSharedRef<SDockTab>
+  FCanSpawnTab()     // Delegate: (const FSpawnTabArgs&) -> bool
 );
 
 FGlobalTabmanager::Get()->RegisterNomadTabSpawner(
-    TabName,           // Name
-    FOnSpawnTab(),     // Delegate: (const FSpawnTabArgs&) -> TSharedRef<SDockTab>
-    FCanSpawnTab()     // Delegate: (const FSpawnTabArgs&) -> bool
+  TabName,           // Name
+  FOnSpawnTab(),     // Delegate: (const FSpawnTabArgs&) -> TSharedRef<SDockTab>
+  FCanSpawnTab()     // Delegate: (const FSpawnTabArgs&) -> bool
 );
 ```
 

@@ -34,18 +34,18 @@ Slate UI 框架提供了一组基于声明式语法的宏用于简化 Slate 控�
 ```cpp
 class SMyWidget : public SCompoundWidget {
 public:
-    SLATE_BEGIN_ARGS(SMyWidget)
-        : _AttrName(true)
-        , _ArgName(0.0f)
-        {}
-        SLATE_ATTRIBUTE(bool, AttrName)
-        SLATE_ARGUMENT(float, ArgName)
-        SLATE_EVENT(FOnClicked, OnClicked)
-        SLATE_DEFAULT_SLOT(FArguments, DefaultSlotName)
-        SLATE_NAMED_SLOT(FArguments, SlotName)
-    SLATE_END_ARGS()
+  SLATE_BEGIN_ARGS(SMyWidget)
+    : _AttrName(true)
+    , _ArgName(0.0f)
+    {}
+    SLATE_ATTRIBUTE(bool, AttrName)
+    SLATE_ARGUMENT(float, ArgName)
+    SLATE_EVENT(FOnClicked, OnClicked)
+    SLATE_DEFAULT_SLOT(FArguments, DefaultSlotName)
+    SLATE_NAMED_SLOT(FArguments, SlotName)
+  SLATE_END_ARGS()
 
-    void Construct(const FArguments& InArgs);
+  void Construct(const FArguments& InArgs);
 };
 ```
 
@@ -68,12 +68,12 @@ public:
 ```cpp
 void SMyWidget::Construct(const FArguments& InArgs)
 {
-    ChildSlot
-    [
-        SNew(SButton)
-        .Text(FText::FromString(TEXT("MyWidget")))
-        .OnClicked(InArgs._OnClicked)
-    ];
+  ChildSlot
+  [
+    SNew(SButton)
+    .Text(FText::FromString(TEXT("MyWidget")))
+    .OnClicked(InArgs._OnClicked)
+  ];
 }
 ```
 

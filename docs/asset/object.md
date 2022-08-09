@@ -13,11 +13,11 @@
 ```cpp
 UCLASS()
 class UCustomAsset : public UObject {
-	GENERATED_BODY()
+  GENERATED_BODY()
 
 public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	bool TestBool;
+  UPROPERTY(EditAnywhere, BlueprintReadWrite)
+  bool TestBool;
 };
 ```
 

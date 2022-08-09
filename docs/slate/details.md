@@ -16,12 +16,12 @@
 class SMyDetails : public SCompoundWidget
 {
 public:
-    SLATE_BEGIN_ARGS(SMyDetails) {}
-    SLATE_END_ARGS()
+  SLATE_BEGIN_ARGS(SMyDetails) {}
+  SLATE_END_ARGS()
 
-    void Construct(const FArguments& InArgs);
+  void Construct(const FArguments& InArgs);
 private:
-    TSharedPtr<IDetailsView> Details;
+  TSharedPtr<IDetailsView> Details;
 };
 ```
 
@@ -34,13 +34,13 @@ private:
 ```cpp
 UCLASS()
 class UTestClass : public UObject {
-	GENERATED_BODY()
+  GENERATED_BODY()
 public:
-	UPROPERTY(EditAnywhere, Category="Test")
-	int32 TestInt;
+  UPROPERTY(EditAnywhere, Category="Test")
+  int32 TestInt;
 
-	UPROPERTY(EditAnywhere, Category="Test")
-	UTexture2D* TestTexture;
+  UPROPERTY(EditAnywhere, Category="Test")
+  UTexture2D* TestTexture;
 };
 ```
 
@@ -57,8 +57,8 @@ const auto ClassDefaultObject = UTestClass::StaticClass()->GetDefaultObject(true
 ```cpp
 class FMyDetails : public IDetailCustomization {
 public:
-    static TSharedRef<IDetailCustomization> MakeInstance();
-    virtual void CustomizeDetails(IDetailLayoutBuilder& DetailBuilder) override;
+  static TSharedRef<IDetailCustomization> MakeInstance();
+  virtual void CustomizeDetails(IDetailLayoutBuilder& DetailBuilder) override;
 };
 ```
 
@@ -66,19 +66,19 @@ public:
 
 ```cpp
 TSharedRef<IDetailCustomization> FMyDetails::MakeInstance() {
-    return MakeShared<FMyDetails>();
+  return MakeShared<FMyDetails>();
 }
 
 void FMyDetails::CustomizeDetails(IDetailLayoutBuilder& DetailBuilder) {
-    IDetailCategoryBuilder& Category = DetailBuilder.EditCategory(TEXT("Test"));
+  IDetailCategoryBuilder& Category = DetailBuilder.EditCategory(TEXT("Test"));
 
-    TArray<TWeakObjectPtr<UObject>> Objects;
-    DetailBuilder.GetObjectsBeingCustomized(Objects);
-    Category.AddCustomRow(FText::FromString(TEXT("CustomDetails")))
-        .WholeRowContent()
-        [
-            SNew(SButton).Text(FText::FromString(TEXT("CustomDetails")))
-        ];
+  TArray<TWeakObjectPtr<UObject>> Objects;
+  DetailBuilder.GetObjectsBeingCustomized(Objects);
+  Category.AddCustomRow(FText::FromString(TEXT("CustomDetails")))
+      .WholeRowContent()
+      [
+        SNew(SButton).Text(FText::FromString(TEXT("CustomDetails")))
+      ];
 }
 ```
 
@@ -86,8 +86,8 @@ void FMyDetails::CustomizeDetails(IDetailLayoutBuilder& DetailBuilder) {
 
 ```cpp
 Details->RegisterInstancedCustomPropertyLayout(
-    UMyClass::StaticClass(),
-    FOnGetDetailCustomizationInstance::CreateStatic(&FMyDetails::MakeInstance)
+  UMyClass::StaticClass(),
+  FOnGetDetailCustomizationInstance::CreateStatic(&FMyDetails::MakeInstance)
 );
 ```
 
@@ -105,21 +105,21 @@ Details->RegisterInstancedCustomPropertyLayout(
 ```cpp
 class FMyDetailsRootObjectCustomization : public IDetailRootObjectCustomization {
 public:
-    virtual TSharedPtr<SWidget> CustomizeObjectHeader(
-        const FDetailsObjectSet& InRootObjectSet,
-        const TSharedPtr<ITableRow>& InTableRow
-    ) override {
-        const auto ObjectName = InRootObjectSet.RootObjects[0]->GetName();
-        return SNew(STextBlock).Text(FText::FromString(ObjectName));
-    }
+  virtual TSharedPtr<SWidget> CustomizeObjectHeader(
+    const FDetailsObjectSet& InRootObjectSet,
+    const TSharedPtr<ITableRow>& InTableRow
+  ) override {
+    const auto ObjectName = InRootObjectSet.RootObjects[0]->GetName();
+    return SNew(STextBlock).Text(FText::FromString(ObjectName));
+  }
 
-    virtual bool ShouldDisplayHeader(const UObject* InRootObject) const override {
-        return true;
-    }
+  virtual bool ShouldDisplayHeader(const UObject* InRootObject) const override {
+    return true;
+  }
 
-    virtual EExpansionArrowUsage GetExpansionArrowUsage() const override {
-        return EExpansionArrowUsage::Default;
-    }
+  virtual EExpansionArrowUsage GetExpansionArrowUsage() const override {
+    return EExpansionArrowUsage::Default;
+  }
 };
 ```
 
@@ -135,20 +135,20 @@ Details->SetRootObjectCustomizationInstance(MakeShared<FMyDetailsRootObjectCusto
 
 ```cpp
 void SMyDetails::Construct(const FArguments& InArgs) {
-    auto& PropertyEditor = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
-    FDetailsViewArgs DetailsViewArgs;
-    Details = PropertyEditor.CreateDetailView(DetailsViewArgs);
-    Details->RegisterInstancedCustomPropertyLayout(
-        UMyClass::StaticClass(),
-        FOnGetDetailCustomizationInstance::CreateStatic(&FMyDetails::MakeInstance)
-    );
-    Details->SetRootObjectCustomizationInstance(MakeShared<FMyDetailsRootObjectCustomization>());
-    Details->SetObject(UTestClass::StaticClass()->GetDefaultObject(), true);
+  auto& PropertyEditor = FModuleManager::GetModuleChecked<FPropertyEditorModule>("PropertyEditor");
+  FDetailsViewArgs DetailsViewArgs;
+  Details = PropertyEditor.CreateDetailView(DetailsViewArgs);
+  Details->RegisterInstancedCustomPropertyLayout(
+    UMyClass::StaticClass(),
+    FOnGetDetailCustomizationInstance::CreateStatic(&FMyDetails::MakeInstance)
+  );
+  Details->SetRootObjectCustomizationInstance(MakeShared<FMyDetailsRootObjectCustomization>());
+  Details->SetObject(UTestClass::StaticClass()->GetDefaultObject(), true);
 
-    ChildSlot
-    [
-        Details.ToSharedRef()
-    ];
+  ChildSlot
+  [
+    Details.ToSharedRef()
+  ];
 }
 ```
 

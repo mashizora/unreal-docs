@@ -21,10 +21,9 @@ Unreal 还提供了 `FMenuBuilder` `FExtender` 等可用来拓展菜单的 API�
 ```cpp
 // Delays menu registration until safe and ready
 UToolMenus::RegisterStartupCallback(
-    FSimpleMulticastDelegate::FDelegate::CreateLambda([&] {
-        FToolMenuOwnerScoped OwnerScoped(this);
-        // Register Custom Menus Here
-        // ...
+  FSimpleMulticastDelegate::FDelegate::CreateLambda([&] {
+    FToolMenuOwnerScoped OwnerScoped(this);
+    // ...Register Custom Menus Here
 }));
 ```
 
@@ -62,7 +61,7 @@ UToolMenus::RegisterStartupCallback(
 UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Window");
 FToolMenuSection& Section = Menu->FindOrAddSection("WindowLayout");
 FToolMenuEntry& Entry = Section.AddEntry(
-    FToolMenuEntry::InitMenuEntry(FMyCommands::Get().PluginAction)
+  FToolMenuEntry::InitMenuEntry(FMyCommands::Get().PluginAction)
 );
 Entry.SetCommandList(PluginCommands);
 ```
@@ -77,10 +76,10 @@ Entry.SetCommandList(PluginCommands);
 UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu");
 FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
 FToolMenuEntry& Entry = Section.AddSubMenu(
-    "Plugin",                                            // Name
-    LOCTEXT("PluginName", "Plugin"),                     // Display Name
-    LOCTEXT("PluginDescription", "Plugin Description"),  // Descriptions
-    FNewToolMenuChoice()                                 // Contents: default
+  "Plugin",                                             // Name
+  LOCTEXT("PluginName", "Plugin"),                      // Display Name
+  LOCTEXT("PluginDescription", "Plugin Description"),   // Descriptions
+  FNewToolMenuChoice()                                  // Contents: default
 );
 Entry.InsertPosition = FToolMenuInsert("Help", EToolMenuInsertType::Before);
 ```
@@ -91,8 +90,8 @@ Entry.InsertPosition = FToolMenuInsert("Help", EToolMenuInsertType::Before);
 UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.MainMenu.Plugin");
 FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
 Section.AddMenuEntryWithCommandList(
-    FMyCommands::Get().PluginAction,     // Command
-    PluginCommands                       // CommandList
+  FMyCommands::Get().PluginAction,     // Command
+  PluginCommands                       // CommandList
 );
 ```
 
@@ -105,11 +104,10 @@ Section.AddMenuEntryWithCommandList(
 - 拓展 `LevelEditor.LevelEditorToolBar.PlayToolBar` 添加工具栏按钮
 
 ```cpp
-UToolMenu* Menu = UToolMenus::Get()
-    ->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
+UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
 FToolMenuSection& Section = ToolbarMenu->FindOrAddSection(NAME_None);
 FToolMenuEntry& Entry = Section.AddEntry(
-    FToolMenuEntry::InitToolBarButton(FMyCommands::Get().PluginAction)
+  FToolMenuEntry::InitToolBarButton(FMyCommands::Get().PluginAction)
 );
 Entry.SetCommandList(PluginCommands);
 ```
@@ -119,25 +117,23 @@ Entry.SetCommandList(PluginCommands);
 - 拓展 `LevelEditor.LevelEditorToolBar.PlayToolBar` 添加工具栏菜单按钮
 
 ```cpp
-UToolMenu* Menu = UToolMenus::Get()
-    ->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
+UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar");
 FToolMenuSection& Section = ToolbarMenu->FindOrAddSection(NAME_None);
 Section.AddEntry(FToolMenuEntry::InitComboButton(
-    "Plugin",              // Name
-    FUIAction(),           // Action: default
-    FNewToolMenuChoice()   // Contents: default
+  "Plugin",              // Name
+  FUIAction(),           // Action: default
+  FNewToolMenuChoice()   // Contents: default
 ));
 ```
 
 - 拓展 `LevelEditor.LevelEditorToolBar.PlayToolBar.Plugin` 创建自定义菜单
 
 ```cpp
-UToolMenu* Menu = UToolMenus::Get()
-    ->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar.Plugin");
+UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar.Plugin");
 FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
 Section.AddMenuEntryWithCommandList(
-    FMyCommands::Get().PluginAction,     // Command
-    PluginCommands                       // CommandList
+  FMyCommands::Get().PluginAction,     // Command
+  PluginCommands                       // CommandList
 );
 ```
 
@@ -151,7 +147,7 @@ Section.AddMenuEntryWithCommandList(
 UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("ContentBrowser.AssetContextMenu");
 FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
 FToolMenuEntry& Entry = Section.AddEntry(
-    FToolMenuEntry::InitMenuEntry(FMyCommands::Get().PluginAction)
+  FToolMenuEntry::InitMenuEntry(FMyCommands::Get().PluginAction)
 );
 Entry.SetCommandList(PluginCommands);
 ```
