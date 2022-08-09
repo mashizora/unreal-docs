@@ -45,8 +45,8 @@ export default defineConfig({
           { text: 'Slate 控件', link: '/slate/widget' },
           { text: 'Slate 表达式', link: '/slate/expr' },
           { text: 'Slate 布局', link: '/slate/layout' },
+          { text: 'Slate Style', link: '/slate/style' },
           { text: '细节面板', link: '/slate/details' },
-          { text: '编写中', link: '/slate/writing' },
         ],
       },
       {
@@ -58,7 +58,6 @@ export default defineConfig({
           { text: '资产类型 Factory', link: '/asset/factory' },
           { text: '资产类型 Actions', link: '/asset/actions' },
           { text: '资产编辑器', link: '/asset/editor' },
-          { text: '编写中', link: '/asset/writing' },
         ],
       },
       {
@@ -72,7 +71,6 @@ export default defineConfig({
         items: [
           { text: '消息通知', link: '/misc/notif' },
           { text: '进度条窗口', link: '/misc/progress' },
-          { text: '编写中', link: '/misc/writing' },
         ],
       },
     ],
