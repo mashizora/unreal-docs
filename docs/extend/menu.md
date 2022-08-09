@@ -122,19 +122,12 @@ FToolMenuSection& Section = ToolbarMenu->FindOrAddSection(NAME_None);
 Section.AddEntry(FToolMenuEntry::InitComboButton(
   "Plugin",              // Name
   FUIAction(),           // Action: default
-  FNewToolMenuChoice()   // Contents: default
+  FNewToolMenuChoice(FOnGetContent::CreateLambda([&] {
+    FMenuBuilder MenuBuilder(true, PluginCommands);
+    MenuBuilder.AddMenuEntry(FMyCommands::Get().PluginAction);
+    return MenuBuilder.MakeWidget();
+  }))
 ));
-```
-
-- 拓展 `LevelEditor.LevelEditorToolBar.PlayToolBar.Plugin` 创建自定义菜单
-
-```cpp
-UToolMenu* Menu = UToolMenus::Get()->ExtendMenu("LevelEditor.LevelEditorToolBar.PlayToolBar.Plugin");
-FToolMenuSection& Section = Menu->FindOrAddSection(NAME_None);
-Section.AddMenuEntryWithCommandList(
-  FMyCommands::Get().PluginAction,     // Command
-  PluginCommands                       // CommandList
-);
 ```
 
 ## 拓展右键菜单
