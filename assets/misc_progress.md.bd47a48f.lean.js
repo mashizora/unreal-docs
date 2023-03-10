@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,a as o}from"./app.43496e99.js";const A=JSON.parse('{"title":"进度条窗口","description":"","frontmatter":{},"headers":[],"relativePath":"misc/progress.md","lastUpdated":1660026515000}'),l={name:"misc/progress.md"},p=o("",5),e=[p];function t(c,r,F,D,y,i){return n(),a("div",null,e)}const C=s(l,[["render",t]]);export{A as __pageData,C as default};

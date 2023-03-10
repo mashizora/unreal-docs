@@ -1,0 +1,1 @@
+import{_ as s,c as a,o as n,a as o}from"./app.43496e99.js";const A=JSON.parse('{"title":"资产编辑器","description":"","frontmatter":{},"headers":[],"relativePath":"asset/editor.md","lastUpdated":1660026515000}'),p={name:"asset/editor.md"},e=o("",7),t=[e];function l(c,r,i,F,y,D){return n(),a("div",null,t)}const C=s(p,[["render",l]]);export{A as __pageData,C as default};

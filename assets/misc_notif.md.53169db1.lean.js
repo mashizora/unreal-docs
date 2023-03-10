@@ -1,0 +1,1 @@
+import{_ as a,c as o,o as s,a as n}from"./app.43496e99.js";const D=JSON.parse('{"title":"消息通知","description":"","frontmatter":{},"headers":[],"relativePath":"misc/notif.md","lastUpdated":1660026515000}'),t={name:"misc/notif.md"},e=n("",5),c=[e];function l(p,i,r,d,F,f){return s(),o("div",null,c)}const y=a(t,[["render",l]]);export{D as __pageData,y as default};
